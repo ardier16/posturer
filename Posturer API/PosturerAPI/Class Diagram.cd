@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PosturerAPI.Controllers.AccountController">
+    <Position X="10.5" Y="0.5" Width="2.5" />
+    <NestedTypes>
+      <Class Name="PosturerAPI.Controllers.AccountController.ExternalLoginData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="PosturerAPI.Controllers.AccountController.RandomOAuthStateGenerator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAAAFACAACAAgQAAEAARAgIAABABEBAAAAAAgAAAAQA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Controllers.ChatController">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAAAAAAAAAAAACAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ChatController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Controllers.ExercisesController">
+    <Position X="15.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAACAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ExercisesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Controllers.PostureLevelController">
+    <Position X="15.75" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAABAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\PostureLevelController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Controllers.TrainingProgramController">
+    <Position X="13.25" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAABAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TrainingProgramController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.Chat">
+    <Position X="23.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Chat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.Exercise">
+    <Position X="20.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAgAAAAAAAAAAAAEAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Exercise.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.ExerciseStep">
+    <Position X="22" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAAAAAAAEAAAAAEEAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\ExerciseStep.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.ApplicationUser">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAECAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IdentityModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.Message">
+    <Position X="23.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAgAAAAAAAAAAgAAAAAAAgEAAAACAAAAAQ=</HashCode>
+      <FileName>Models\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.PostureLevel">
+    <Position X="20.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAgAAAAAAAABAAAgAAAAAAA=</HashCode>
+      <FileName>Models\PostureLevel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.PosturerContext">
+    <Position X="13.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEACBAAAAAAgAABAAEAAAAAAAAACEAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\PosturerContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.ProgramExercise">
+    <Position X="22" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAIAAAEAAAAAAEAAAAAAAACAA=</HashCode>
+      <FileName>Models\ProgramExercise.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.TrainingProgram">
+    <Position X="22" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAIAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainingProgram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.TrainingProgramCreator">
+    <Position X="17.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainingProgramCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PosturerAPI.Models.UserChat">
+    <Position X="23.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAEAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\UserChat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

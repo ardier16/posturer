@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loading = true;
+        var loginBtn = (<HTMLButtonElement>document.getElementById('login_btn'));
+        loginBtn.classList.add('disabled');
+        loginBtn.innerHTML = 'Signing In...';
+
         this.authenticationService.login(this.model.EMail, this.model.Password)
             .subscribe(
                 data => {
@@ -35,6 +39,8 @@ export class LoginComponent implements OnInit {
                     });
                 },
                 error => {
+                    loginBtn.classList.remove('disabled');
+                    loginBtn.innerHTML = 'Sign In';
                     this.alertService.error(error);
                     this.loading = false;
                 });

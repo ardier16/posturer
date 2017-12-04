@@ -27,11 +27,24 @@ namespace PosturerAPI.Models
                 e.DifficultyLevel >= postureLevel - 1 &&
                 e.DifficultyLevel <= postureLevel + 1).ToList();
 
+            Random r = new Random();
+            List<int> idcs = new List<int>();
+            int idx;
+
             for (int i = 0; i < 7; i++)
             {
+                idx = r.Next(0, exercises.Count);
+
+                while (idcs.Contains(idx))
+                {
+                    idx = r.Next(0, exercises.Count);
+                }
+
+                idcs.Add(idx);
+
                 Db.ProgramExercises.Add(new ProgramExercise
                 {
-                    ExerciseId = exercises[i].ExerciseId,
+                    ExerciseId = exercises[idx].ExerciseId,
                     TrainingProgramId = program.TrainingProgramId
                 });
             }

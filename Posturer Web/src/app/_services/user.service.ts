@@ -37,6 +37,10 @@ export class UserService {
             "Text": text        
         }, this.jwt()).map((response: Response) => response.json());
     } 
+    
+    getNewTrainingProgram() {
+        return this.http.post(this.apiUrl + 'trainingprogram', {}, this.jwt()).map((response: Response) => response.json());
+    }
 
     // private helper methods
 

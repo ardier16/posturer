@@ -9,7 +9,11 @@ import { TrainingProgram } from '../_models/training-program';
   styleUrls: ['./training-program.component.css']
 })
 export class TrainingProgramComponent implements OnInit {
-  trainingProgram: TrainingProgram;
+  trainingProgram: TrainingProgram = {
+    TrainingProgramId: 0,
+    UserId: '',
+    Exercises: null
+  };
 
   constructor(
       private userService : UserService,
@@ -22,6 +26,24 @@ export class TrainingProgramComponent implements OnInit {
           data => {
             this.trainingProgram = data;
       });
+    }
+  }
+
+  getNewProgram() {
+    var programButton = (<HTMLButtonElement>document.getElementById('new_program_btn'));
+    programButton.className = "btn btn-success disabled";
+    programButton.innerHTML = "Getting new program..."
+    
+    if (this.guard.canActivate()) {
+      this.userService.getNewTrainingProgram()
+      .subscribe(
+          data => {
+            this.trainingProgram = data;
+            programButton.className = "btn btn-success";  
+            programButton.innerHTML = "Get new program"            
+    
+      });
+      
     }
   }
 }

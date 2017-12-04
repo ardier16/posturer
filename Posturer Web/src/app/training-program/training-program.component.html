@@ -1,5 +1,8 @@
 <div class="container">
     <h2 class="text-center">Your training program</h2>
+    <div class="text-center">
+      <button class="btn btn-success" id="new_program_btn" (click)="getNewProgram()">Get new program</button>
+    </div>
     <div class="row">
       <div *ngFor="let exercise of trainingProgram.Exercises" class="col-md-3 col-6" href="#">
         <a (click)="onSelect(exercise)" class="exercise btn btn-primary" href="/exercises/{{ exercise.ExerciseId }}">

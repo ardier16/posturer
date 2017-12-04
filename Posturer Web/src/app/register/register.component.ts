@@ -23,13 +23,21 @@ export class RegisterComponent {
 
     register() {
         this.loading = true;
+        var registerBtn = (<HTMLButtonElement>document.getElementById('register_btn'));
+        registerBtn.classList.add('disabled');
+        registerBtn.innerHTML = 'Signing Up...';
+
         this.userService.register({ EMail : this.model.EMail, Password: this.model.Password })
             .subscribe(
                 data => {
+                    registerBtn.classList.remove('disabled');
+                    registerBtn.innerHTML = 'Sign Up';
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
                 },
                 error => {
+                    registerBtn.classList.remove('disabled');
+                    registerBtn.innerHTML = 'Sign Up';
                     this.alertService.error(error);
                     this.loading = false;
                 });

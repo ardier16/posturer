@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
-
+using System.Web.Http.Cors;
 
 namespace PosturerAPI.Controllers
 {
     [Authorize]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PostureLevelController : ApiController
     {
         PosturerContext db = new PosturerContext();

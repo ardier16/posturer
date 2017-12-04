@@ -15,11 +15,13 @@ using Microsoft.Owin.Security.OAuth;
 using PosturerAPI.Models;
 using PosturerAPI.Providers;
 using PosturerAPI.Results;
+using System.Web.Http.Cors;
 
 namespace PosturerAPI.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
@@ -349,7 +351,7 @@ namespace PosturerAPI.Controllers
                 return GetErrorResult(result);
             }
 
-            return Ok();
+            return Ok(user);
         }
 
         // POST api/Account/RegisterExternal

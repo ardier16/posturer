@@ -1,0 +1,17 @@
+<div *ngIf="currentUser">Current User = {{currentUser.userName}}</div>
+
+<div class="row">
+  <div class="col-lg-8 col-md-7">
+    <h1 class="text-center">Posturer</h1>
+    <div class="text-center">
+      <img src="img/posturer-logo-512.png" class="img-fluid" alt="Posturer" />
+    </div>
+    <h1 class="text-center">{{title}}</h1>
+  </div>
+  <div *ngIf="!currentUser" class="col-lg-4 col-md-5">
+    <alert></alert>
+    <app-login></app-login>
+    <br />
+    <app-register></app-register>
+  </div>
+</div>

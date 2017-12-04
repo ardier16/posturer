@@ -4,15 +4,34 @@ using System.Linq;
 using System.Web.Http;
 using PosturerAPI.Models;
 using Microsoft.AspNet.Identity;
+using System.Web.Http.Cors;
 
 namespace PosturerAPI.Controllers
 {
     [Authorize]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Chat")]
     public class ChatController : ApiController
     {
         private PosturerContext db = new PosturerContext();
-        
+
+        [Route("Chats")]
+        // GET api/chat/messages
+        public IQueryable<ChatViewModel> GetChats()
+        {
+            string UserId = User.Identity.GetUserId();
+            string userName = User.Identity.Name;
+
+            return db.UserChats.Where(m => m.UserId.Equals(UserId)).Select(m =>
+                new ChatViewModel
+                {
+                    ChatId = m.ChatId,
+                    EMail = db.Users.FirstOrDefault(u => u.Id.Equals(db.UserChats.FirstOrDefault(c => !c.UserId.Equals(m.UserId) && c.ChatId.Equals(m.ChatId)).UserId)).Email,
+                    UserName = db.Users.FirstOrDefault(u => u.Id.Equals(db.UserChats.FirstOrDefault(c => !c.UserId.Equals(m.UserId) && c.ChatId.Equals(m.ChatId)).UserId)).UserName
+                });
+        }
+
+
 
         [Route("Messages")]
         // GET api/chat/messages
@@ -58,11 +77,7 @@ namespace PosturerAPI.Controllers
                     UserName = db.Users.FirstOrDefault(u => u.Id.Equals(m.UserId)).UserName
                 }).ToList();
 
-            return Ok(new
-            {
-                chat.ChatId,
-                messages
-            });
+            return Ok(messages);
         }
 
         // POST api/chat/5

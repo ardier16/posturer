@@ -6,10 +6,12 @@ using System.Net.Http;
 using System.Web.Http;
 using PosturerAPI.Models;
 using Microsoft.AspNet.Identity;
+using System.Web.Http.Cors;
 
 namespace PosturerAPI.Controllers
 {
     [Authorize]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TrainingProgramController : ApiController
     {
         private PosturerContext db = new PosturerContext();
@@ -37,15 +39,8 @@ namespace PosturerAPI.Controllers
 
                 exModels.Add(new ExerciseViewModel
                 {
+                    ExerciseId = exercises[i].ExerciseId,
                     Description = exercises[i].Description,
-                    DifficultyLevel = exercises[i].DifficultyLevel,
-                    Steps = db.ExerciseSteps.Where(es => es.ExerciseId == exId)
-                        .Select(es => new ExerciseStepViewModel
-                        {
-                            ImageUrl = es.ImageUrl,
-                            StepNumber = es.StepNumber,
-                            Text = es.Text
-                        }).ToList()
                 });
             }
 

@@ -1,0 +1,14 @@
+<div id="signin-form">
+    <h3 class="text-center">Sign In</h3>
+    <form ngNativeValidate name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+            <label for="email">E-mail</label>
+            <input required type="email" placeholder="example@mail.com" class="form-control" name="email" [(ngModel)]="model.EMail" #email="ngModel" />
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">Password</label>
+            <input required minlength="6" type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="model.Password" #password="ngModel" />        
+        </div>
+        <button type="submit" class="btn btn-success btn-lg btn-block">Sign In</button>        
+      </form>
+  </div>

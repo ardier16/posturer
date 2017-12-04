@@ -12,8 +12,10 @@ import { User } from '../_models/User';
 })
 export class ChatsComponent implements OnInit {
   chats: Chat[];
+  currentChat: Chat;
   messages: Message[];
-  currentUser: Object;
+  currentUser: User;
+  pressedKeys = {};
   
   constructor(
     private userService: UserService,
@@ -30,12 +32,6 @@ export class ChatsComponent implements OnInit {
           data => {
             this.chats = data;
       });
-
-      this.userService.getMessages(1)
-      .subscribe(
-          data => {
-            this.messages = data;
-      });
     }
   }
 
@@ -49,5 +45,73 @@ export class ChatsComponent implements OnInit {
     
     return month + '/' + day + '/' + year + ' ' + hours + ':' + 
       (minutes < 10 ? '0' + minutes : minutes);
+  }
+
+  showMessages(chatId: number) {
+    this.currentChat = this.findChat(chatId);
+
+    this.userService.getMessages(chatId)
+    .subscribe(
+        data => {
+          this.messages = data;
+          this.scrollToChatBottom();          
+    });
+
+  }
+
+  scrollToChatBottom() {
+    var chat = document.getElementsByClassName("chat_area")[0];
+    if (chat) {
+      setTimeout(() => {
+        chat.scrollTop = chat.scrollHeight;     
+      }, 50);   
+    };
+  }
+
+  sendMessage() {  
+    let textArea = (<HTMLTextAreaElement>document.getElementById('message_text'));
+
+    if (textArea.value.trim() != '') {
+      let text = textArea.value;
+      textArea.value = '';
+      
+      let message : Message = {
+        MessageId: 0,
+        Text: text,
+        UserName: this.currentUser.UserName,
+        SentDate: new Date()
+      }
+  
+      this.messages.push(message);
+      this.scrollToChatBottom();
+
+      this.userService.sendMessage(this.currentChat.ChatId, text).subscribe(
+        data => {
+          this.showMessages(this.currentChat.ChatId);
+        }
+      );
+    }
+    
+  }
+
+  findChat(id: number): Chat {
+    for(let c of this.chats) {
+      if (c.ChatId === id) {
+        return c;
+      }
+    }
+  }
+
+  keyDown(event) {
+    this.pressedKeys[event.keyCode] = true;
+
+    if (this.pressedKeys[13] && this.pressedKeys[17]) {
+      this.sendMessage();
+      return;
+    }
+  }
+
+  keyUp(event) {
+    delete this.pressedKeys[event.keyCode];
   }
 }

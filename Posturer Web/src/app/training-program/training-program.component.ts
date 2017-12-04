@@ -21,7 +21,7 @@ export class TrainingProgramComponent implements OnInit {
       .subscribe(
           data => {
             this.trainingProgram = data;
+      });
     }
   }
-
 }

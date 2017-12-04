@@ -1,7 +1,7 @@
 export class User {
     Id: string;
     Email: string;
-    Password: string;
+    access_token: string;
     UserName: string;
     Status: string;
 }

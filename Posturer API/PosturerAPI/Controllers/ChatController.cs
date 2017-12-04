@@ -98,16 +98,18 @@ namespace PosturerAPI.Controllers
                 return Unauthorized();
             }
 
-            db.Messages.Add(new Message
+            var message = new Message
             {
                 ChatId = id,
                 SentDate = DateTime.Now,
                 Text = model.Text,
                 UserId = User.Identity.GetUserId()
-            });
+            };
+
+            db.Messages.Add(message);
 
             db.SaveChanges();
-            return Ok();
+            return Ok(message);
         }
     }
 }

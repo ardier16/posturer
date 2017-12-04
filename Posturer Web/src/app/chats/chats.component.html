@@ -1,13 +1,13 @@
 <div class="main_section">
   <div class="container">
     <div class="chat_container row">
-      <div class="col-sm-3 chat_sidebar">
+      <div class="col-sm-4 col-lg-3 chat_sidebar">
         <div class="row">
           <div class="member_list">
             <ul class="list-unstyled">
-              <li *ngFor="let chat of chats" class="left clearfix">
+              <li *ngFor="let chat of chats" class="left clearfix" [ngClass]="currentChat && currentChat.ChatId === chat.ChatId ? 'selected-chat' : ''" (click)="showMessages(chat.ChatId)">
                 <span class="chat-img pull-left">
-                          <div class="img-circle">J</div>
+                          <div class="img-circle">{{chat.UserName.toUpperCase()[0]}}</div>
                           </span>
                 <div class="chat-body clearfix">
                   <div class="header_sec">
@@ -22,31 +22,34 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-9 message_section">
+      <div class="col-sm-8 col-lg-9 message_section">
         <div class="row">
           <div class="new_message_head">
-            <div class="pull-left recipient-name"><strong>Jack Sparrow</strong></div>
-            <div class="pull-right recipient-mail">mail@mail.com</div>
+              <div *ngIf="!currentChat" class="center-text"><strong>Please, select chat from the list.</strong></div>              
+              <div *ngIf="currentChat" class="pull-left recipient-name"><strong>{{currentChat.UserName}}</strong></div>
+              <div *ngIf="currentChat" class="pull-right recipient-mail">{{currentChat.EMail}}</div>
           </div>
           <div class="chat_area">
             <ul class="list-unstyled">
-                <li *ngFor="let message of messages" class="left clearfix" [ngClass]="message.UserName == currentUser.userName ? 'owner_message' : 'guest_message'">
-                    <span class="chat-img1" [ngClass]="message.UserName == currentUser.userName ? 'pull-right' : 'pull-left'">
-                       <div class="img-circle">J</div>
+                <li *ngFor="let message of messages" class="left clearfix" [ngClass]="message.UserName == currentUser.UserName ? 'owner_message' : 'guest_message'">
+                    <span class="chat-img1" [ngClass]="message.UserName == currentUser.UserName ? 'pull-right' : 'pull-left'">
+                       <div class="img-circle">{{message.UserName.toUpperCase()[0]}}</div>
                        </span>
                     <div class="chat-body1 clearfix">
                       <p>{{message.Text}}
                       </p>
-                      <div class="chat_time"  [ngClass]="message.UserName == currentUser.userName ? 'pull-right' : 'pull-left'">{{formatDate(message.SentDate)}}</div>
+                      <div class="chat_time"  [ngClass]="message.UserName == currentUser.UserName ? 'pull-right' : 'pull-left'">{{formatDate(message.SentDate)}}</div>
                     </div>
                   </li>
             </ul>
           </div>
-          <div class="message_write">
-            <textarea class="form-control" placeholder="Type a message" style="margin-top: 0px; margin-bottom: 0px; height: 76px; resize: none;"></textarea>
+          <div *ngIf="currentChat" class="message_write">
+            <form>
+              <textarea (keydown)="keyDown($event)" (keyup)="keyUp($event)" id="message_text" class="form-control" placeholder="Type a message" style="margin-top: 0px; margin-bottom: 0px; height: 76px; resize: none;"></textarea>
             <div class="clearfix"></div>
             <div class="chat_bottom">
-              <button class="pull-right btn btn-success send-button">Send</button></div>
+              <button type="submit" class="pull-right btn btn-success send-button" (click)="sendMessage()">Send</button></div>
+            </form>
           </div>
         </div>
       </div>

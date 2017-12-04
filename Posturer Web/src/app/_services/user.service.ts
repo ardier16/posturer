@@ -32,6 +32,12 @@ export class UserService {
         return this.http.get(this.apiUrl + 'chat/' + id, this.jwt()).map((response: Response) => response.json());        
     }
 
+    sendMessage(chatId: number, text: string) {
+        return this.http.post(this.apiUrl + 'chat/' + chatId, {
+            "Text": text        
+        }, this.jwt()).map((response: Response) => response.json());
+    } 
+
     // private helper methods
 
     private jwt() {

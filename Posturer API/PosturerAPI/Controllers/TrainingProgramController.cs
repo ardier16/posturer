@@ -56,16 +56,17 @@ namespace PosturerAPI.Controllers
         public IHttpActionResult Post()
         {
             string UserId = User.Identity.GetUserId();
+            TrainingProgram program = db.TrainingPrograms.FirstOrDefault(tp =>
+                tp.UserId.Equals(UserId));
 
-            if (db.TrainingPrograms.FirstOrDefault(tp => 
-                tp.UserId.Equals(UserId)) != null)
+            if (program != null)
             {
-                return BadRequest("Программа уже создана");
+                db.TrainingPrograms.Remove(program);
             }
 
             if (TrainingProgramCreator.Create(User.Identity.GetUserId(), db) != null)
             {
-                return Ok();
+                return Get();
             }
 
             return NotFound();

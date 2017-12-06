@@ -133,13 +133,35 @@ namespace PosturerAPI.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
 
-            return Ok();
+            return await GetUserInfo();
+        }
+
+        [Route("ChangeUsername")]
+        public async Task<IHttpActionResult> ChangeUsername(ChangeUsernameBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = UserManagerExtensions.FindByName(UserManager, model.UserName);
+
+            if (user == null)
+            {
+                ApplicationUser currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                currentUser.UserName = model.UserName;
+                UserManager.Update(currentUser);
+
+                return await GetUserInfo();
+            }
+
+            return BadRequest("Username {0} is already taken");
         }
 
         // POST api/Account/SetPassword
@@ -266,9 +288,9 @@ namespace PosturerAPI.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -382,7 +404,7 @@ namespace PosturerAPI.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

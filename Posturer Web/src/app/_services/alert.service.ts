@@ -9,14 +9,11 @@ export class AlertService {
     private keepAfterNavigationChange = false;
 
     constructor(private router: Router) {
-        // clear alert message on route change
         router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
                 if (this.keepAfterNavigationChange) {
-                    // only keep for a single location change
                     this.keepAfterNavigationChange = false;
                 } else {
-                    // clear alert
                     this.subject.next();
                 }
             }
@@ -31,30 +28,32 @@ export class AlertService {
     error(error: any, keepAfterNavigationChange = false) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
 
-        console.log(error['status']);
-
         if (error["status"] == '200') {
-            this.subject.next({ type: 'success', text: "Success" });            
+            this.subject.next({ type: 'success', text: "Success" });
         } else if (error.status = '400') {
-            this.subject.next({ type: 'error', text: this.getResponse(error.json()) });            
+            this.subject.next({ type: 'error', text: this.getResponse(error.json()) });
         }
     }
 
 
-    getResponse(response : Object) {
-        let result : String = '';
-        
+    getResponse(response: Object) {
+        let result: String = '';
+
         if (response["error_description"]) {
             return response["error_description"];
         }
 
-        else if (response["ModelState"]) {
+        if (response["ModelState"]) {
             for (var key in response["ModelState"]) {
                 result += response["ModelState"][key];
             }
+
+            return result.split(',')[0];
         }
-    
-        return result.split(',')[0];
+
+        if (response["Message"]) {
+            return response["Message"];
+        }
     }
 
     getMessage(): Observable<any> {

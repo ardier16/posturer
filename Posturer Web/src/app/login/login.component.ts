@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService, AuthenticationService } from '../_services/index';
 
 @Component({
-    selector: 'app-login',    
+    selector: 'app-login',
     moduleId: module.id,
     templateUrl: 'login.component.html'
 })
@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
         private alertService: AlertService,
         private zone: NgZone) { }
 
-        ngOnInit() {
-            // reset login status
-            this.authenticationService.logout();
-        }
+    ngOnInit() {
+        // reset login status
+        this.authenticationService.logout();
+    }
 
     login() {
         this.loading = true;
@@ -33,16 +33,16 @@ export class LoginComponent implements OnInit {
 
         this.authenticationService.login(this.model.EMail, this.model.Password)
             .subscribe(
-                data => {
-                    this.zone.runOutsideAngular(() => {
-                        location.reload();
-                    });
-                },
-                error => {
-                    loginBtn.classList.remove('disabled');
-                    loginBtn.innerHTML = 'Sign In';
-                    this.alertService.error(error);
-                    this.loading = false;
+            data => {
+                this.zone.runOutsideAngular(() => {
+                    location.reload();
                 });
+            },
+            error => {
+                loginBtn.classList.remove('disabled');
+                loginBtn.innerHTML = 'Sign In';
+                this.alertService.error(error);
+                this.loading = false;
+            });
     }
 }

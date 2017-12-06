@@ -1,17 +1,84 @@
-<div *ngIf="currentUser">Current User = {{currentUser.UserName}}</div>
-
-<div class="row">
-  <div class="col-lg-8 col-md-7">
-    <h1 class="text-center">Posturer</h1>
-    <div class="text-center">
-      <img src="img/posturer-logo-512.png" class="img-fluid" alt="Posturer" />
+<div *ngIf="!currentUser" class="row">
+    <div class="col-lg-8 col-md-7">
+        <h1 class="text-center">Posturer</h1>
+        <div class="text-center">
+            <img src="img/posturer-logo-512.png" class="img-fluid" alt="Posturer" />
+        </div>
+        <h1 class="text-center">{{title}}</h1>
     </div>
-    <h1 class="text-center">{{title}}</h1>
-  </div>
-  <div *ngIf="!currentUser" class="col-lg-4 col-md-5">
-    <alert></alert>
-    <app-login></app-login>
-    <br />
-    <app-register></app-register>
-  </div>
+    <div class="col-lg-4 col-md-5">
+        <alert></alert>
+        <app-login></app-login>
+        <br />
+        <app-register></app-register>
+    </div>
+</div>
+<div *ngIf="userInfo" class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <h4 class="text-center">
+            <strong>Email:</strong>
+        </h4>
+        <h5 class="text-center">{{userInfo.Email}}</h5>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <h4 class="text-center">
+            <strong>Username:</strong>
+        </h4>
+        <h5 class="text-center">{{userInfo.UserName}}</h5>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <h4 class="text-center">
+            <strong>Status: </strong>
+        </h4>
+        <h5 class="text-center">{{userInfo.Status}}</h5>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <h4 class="text-center">
+            <strong>Registration date:</strong>
+        </h4>
+        <h5 class="text-center">{{formatDate(userInfo.RegistrationDate)}}</h5>
+    </div>
+</div>
+<div *ngIf="userInfo" class="row user_change">
+    <div class="col-md-4 col-sm-12">
+        <h3 class="text-center">Change password</h3>
+        <div *ngIf="passwordMessage" [ngClass]="{ 'alert': passwordMessage, 'alert-success': passwordMessage.type === 'success', 'alert-danger': passwordMessage.type === 'error' }">{{passwordMessage.text}}</div>
+        <form ngNativeValidate name="form" (ngSubmit)="changePassword()" #f="ngForm">
+            <div class="form-group">
+                <label for="cur_password">Current password</label>
+                <input required minlength="6" type="password" class="form-control" name="cur_password" [(ngModel)]="model.CurrentPassword"
+                    #CurrentPassword="ngModel" />
+            </div>
+            <div class="form-group">
+                <label for="cur_password">New password</label>
+                <input required minlength="6" type="password" class="form-control" name="new_password" [(ngModel)]="model.NewPassword" #NewPassword="ngModel"
+                />
+            </div>
+            <div class="form-group">
+                <label for="cur_password">Confirm new password</label>
+                <input required minlength="6" type="password" class="form-control" name="new_password2" [(ngModel)]="model.NewPassword2"
+                    #NewPassword2="ngModel" />
+            </div>
+            <button type="submit" id="change_password_btn" class="btn btn-success btn-lg btn-block">Change password</button>
+        </form>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <h1 class="text-center">Posturer</h1>
+        <div class="text-center">
+            <img src="img/posturer-logo-512.png" class="img-fluid" alt="Posturer" />
+        </div>
+        <h1 class="text-center">{{title}}</h1>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <h3 class="text-center">Change username</h3>
+        <div *ngIf="usernameMessage" [ngClass]="{ 'alert': usernameMessage, 'alert-success': usernameMessage.type === 'success', 'alert-danger': usernameMessage.type === 'error' }">{{usernameMessage.text}}</div>
+        <form ngNativeValidate name="form" (ngSubmit)="changeUsername()" #f="ngForm">
+            <div class="form-group">
+                <label for="new_username">New username</label>
+                <input required maxlength="30" minlength="3" type="text" class="form-control" name="new_username" [(ngModel)]="model.NewUsername"
+                    #NewUsername="ngModel" />
+            </div>
+            <button type="submit" id="login_btn" class="btn btn-success btn-lg btn-block">Change username</button>
+        </form>
+    </div>
 </div>

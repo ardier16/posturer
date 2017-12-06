@@ -16,16 +16,16 @@ export class TrainingProgramComponent implements OnInit {
   };
 
   constructor(
-      private userService : UserService,
-      private guard: AuthGuard) { }
+    private userService: UserService,
+    private guard: AuthGuard) { }
 
   ngOnInit() {
     if (this.guard.canActivate()) {
       this.userService.getTrainingProgram()
-      .subscribe(
-          data => {
-            this.trainingProgram = data;
-      });
+        .subscribe(
+        data => {
+          this.trainingProgram = data;
+        });
     }
   }
 
@@ -33,17 +33,17 @@ export class TrainingProgramComponent implements OnInit {
     var programButton = (<HTMLButtonElement>document.getElementById('new_program_btn'));
     programButton.className = "btn btn-success disabled";
     programButton.innerHTML = "Getting new program..."
-    
+
     if (this.guard.canActivate()) {
       this.userService.getNewTrainingProgram()
-      .subscribe(
-          data => {
-            this.trainingProgram = data;
-            programButton.className = "btn btn-success";  
-            programButton.innerHTML = "Get new program"            
-    
-      });
-      
+        .subscribe(
+        data => {
+          this.trainingProgram = data;
+          programButton.className = "btn btn-success";
+          programButton.innerHTML = "Get new program"
+
+        });
+
     }
   }
 }

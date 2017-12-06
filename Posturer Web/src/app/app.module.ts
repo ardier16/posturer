@@ -35,7 +35,7 @@ import { AuthGuard } from './_guards/index';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

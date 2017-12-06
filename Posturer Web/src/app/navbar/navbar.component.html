@@ -1,23 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">Posturer</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <ul class="navbar-nav mr-auto">
-          <li [ngClass]="getClass('/exercises')">
-            <a class="nav-link" href="/exercises">Exercises</a>
-          </li>
-          <li *ngIf="currentUser"  [ngClass]="getClass('/chats')">
-            <a class="nav-link" href="/chats">Chats</a>
-          </li>
-          <li *ngIf="currentUser"  [ngClass]="getClass('/training-program')">
-            <a class="nav-link" href="/training-program">Training Program</a>
-          </li>
-          <li *ngIf="currentUser"  [ngClass]="getClass('/posture-level')">
-            <a class="nav-link" href="/posture-level">Posture Level</a>
-          </li>
-        </ul>
+    <ul class="navbar-nav mr-auto">
+      <li [ngClass]="getClass('/exercises')">
+        <a class="nav-link" href="/exercises">Exercises</a>
+      </li>
+      <li *ngIf="currentUser" [ngClass]="getClass('/chats')">
+        <a class="nav-link" href="/chats">Chats</a>
+      </li>
+      <li *ngIf="currentUser" [ngClass]="getClass('/training-program')">
+        <a class="nav-link" href="/training-program">Training Program</a>
+      </li>
+      <li *ngIf="currentUser" [ngClass]="getClass('/posture-level')">
+        <a class="nav-link" href="/posture-level">Posture Level</a>
+      </li>
+    </ul>
     <span *ngIf="currentUser" class="navbar-text">
       Hello, {{currentUser.UserName}}
     </span>
@@ -26,6 +27,6 @@
         <a class="nav-link" href="#" (click)="logout()">Sign out</a>
       </li>
     </ul>
-  </div> 
+  </div>
 </nav>
 <br />

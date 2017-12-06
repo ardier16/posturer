@@ -10,7 +10,7 @@ import { TrainingProgramComponent } from './training-program/training-program.co
 
 
 const routes: Routes = [
-  { path: '', component: MainComponent },  
+  { path: '', component: MainComponent },
   { path: 'exercises', component: ExercisesComponent },
   { path: 'exercises/:id', component: ExerciseDetailComponent },
   { path: 'chats', component: ChatsComponent },

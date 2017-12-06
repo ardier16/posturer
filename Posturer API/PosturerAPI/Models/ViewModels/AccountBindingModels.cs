@@ -26,6 +26,12 @@ namespace PosturerAPI.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class ChangeUsernameBindingModel
+    {
+        [Required]
+        public string UserName { get; set; }
+    }
+
     public class RegisterBindingModel
     {
         [Required]

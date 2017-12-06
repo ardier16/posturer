@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AlertService, UserService } from '../_services/index';
 
 @Component({
-    selector: 'app-register',    
+    selector: 'app-register',
     moduleId: module.id,
     templateUrl: 'register.component.html'
 })
@@ -18,8 +18,8 @@ export class RegisterComponent {
         private userService: UserService,
         private alertService: AlertService) { }
 
-        ngOnInit() {
-        }
+    ngOnInit() {
+    }
 
     register() {
         this.loading = true;
@@ -27,19 +27,19 @@ export class RegisterComponent {
         registerBtn.classList.add('disabled');
         registerBtn.innerHTML = 'Signing Up...';
 
-        this.userService.register({ EMail : this.model.EMail, Password: this.model.Password })
+        this.userService.register({ EMail: this.model.EMail, Password: this.model.Password })
             .subscribe(
-                data => {
-                    registerBtn.classList.remove('disabled');
-                    registerBtn.innerHTML = 'Sign Up';
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    registerBtn.classList.remove('disabled');
-                    registerBtn.innerHTML = 'Sign Up';
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+            data => {
+                registerBtn.classList.remove('disabled');
+                registerBtn.innerHTML = 'Sign Up';
+                this.alertService.success('Registration successful', true);
+                this.router.navigate(['/login']);
+            },
+            error => {
+                registerBtn.classList.remove('disabled');
+                registerBtn.innerHTML = 'Sign Up';
+                this.alertService.error(error);
+                this.loading = false;
+            });
     }
 }

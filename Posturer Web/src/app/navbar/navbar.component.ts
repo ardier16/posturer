@@ -14,13 +14,13 @@ export class NavbarComponent implements OnInit {
   location: Location;
 
   constructor(
-    private userService: UserService, 
-    location : Location,
+    private userService: UserService,
+    location: Location,
     private authenticationService: AuthenticationService,
     private zone: NgZone
-    ) {
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      this.location = location;
+  ) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.location = location;
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
     this.authenticationService.logout();
     this.zone.runOutsideAngular(() => {
       location.href = '';
-  });
+    });
   }
 
 }

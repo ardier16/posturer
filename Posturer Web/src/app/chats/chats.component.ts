@@ -16,22 +16,22 @@ export class ChatsComponent implements OnInit {
   messages: Message[];
   currentUser: User;
   pressedKeys = {};
-  
+
   constructor(
     private userService: UserService,
     private guard: AuthGuard
-  ) { 
+  ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.currentUser);    
+    console.log(this.currentUser);
   }
 
   ngOnInit() {
     if (this.guard.canActivate()) {
       this.userService.getChats()
-      .subscribe(
-          data => {
-            this.chats = data;
-      });
+        .subscribe(
+        data => {
+          this.chats = data;
+        });
     }
   }
 
@@ -42,8 +42,8 @@ export class ChatsComponent implements OnInit {
     let year = d.getFullYear();
     let hours = d.getHours();
     let minutes = d.getMinutes();
-    
-    return month + '/' + day + '/' + year + ' ' + hours + ':' + 
+
+    return month + '/' + day + '/' + year + ' ' + hours + ':' +
       (minutes < 10 ? '0' + minutes : minutes);
   }
 
@@ -51,11 +51,11 @@ export class ChatsComponent implements OnInit {
     this.currentChat = this.findChat(chatId);
 
     this.userService.getMessages(chatId)
-    .subscribe(
-        data => {
-          this.messages = data;
-          this.scrollToChatBottom();          
-    });
+      .subscribe(
+      data => {
+        this.messages = data;
+        this.scrollToChatBottom();
+      });
 
   }
 
@@ -63,25 +63,25 @@ export class ChatsComponent implements OnInit {
     var chat = document.getElementsByClassName("chat_area")[0];
     if (chat) {
       setTimeout(() => {
-        chat.scrollTop = chat.scrollHeight;     
-      }, 50);   
+        chat.scrollTop = chat.scrollHeight;
+      }, 50);
     };
   }
 
-  sendMessage() {  
+  sendMessage() {
     let textArea = (<HTMLTextAreaElement>document.getElementById('message_text'));
 
     if (textArea.value.trim() != '') {
       let text = textArea.value;
       textArea.value = '';
-      
-      let message : Message = {
+
+      let message: Message = {
         MessageId: 0,
         Text: text,
         UserName: this.currentUser.UserName,
         SentDate: new Date()
       }
-  
+
       this.messages.push(message);
       this.scrollToChatBottom();
 
@@ -91,11 +91,11 @@ export class ChatsComponent implements OnInit {
         }
       );
     }
-    
+
   }
 
   findChat(id: number): Chat {
-    for(let c of this.chats) {
+    for (let c of this.chats) {
       if (c.ChatId === id) {
         return c;
       }

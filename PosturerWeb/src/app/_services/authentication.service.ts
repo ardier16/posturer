@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthenticationService {
     constructor(private http: Http) { }
-    private loginUrl = 'http://localhost:61538/token';
+    private loginUrl = 'http://posturer.azurewebsites.net/token';
 
     login(email: string, password: string) {
         return this.http.post(this.loginUrl, 'userName=' + email + '&password=' + password + '&grant_type=password')

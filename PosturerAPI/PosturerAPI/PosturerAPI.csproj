@@ -250,7 +250,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Class Diagram.cd" />
-    <None Include="Properties\PublishProfiles\PosturerAPI - Web Deploy.pubxml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -271,6 +270,9 @@
     <EmbeddedResource Include="Migrations\201711010752286_Posturer.resx">
       <DependentUpon>201711010752286_Posturer.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Posturer - Web Deploy.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

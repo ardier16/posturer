@@ -11,11 +11,15 @@ using Android.Util;
 using Android.Content;
 using Android.Content.Res;
 using Android.Widget;
+using PosturerAndroid.Services;
+using System.Linq;
+using PosturerAndroid.Models;
 
 namespace PosturerAndroid.Fragments
 {
     public class Fragment1 : SupportFragment
     {
+        private List<Exercise> exercises;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,32 +38,19 @@ namespace PosturerAndroid.Fragments
 
         private void SetUpRecyclerView(RecyclerView recyclerView)
         {
-            var values = GetRandomSubList(Exercises.ExerciseStrings, 30);
+            exercises = new RestService().GetAllExercises();
 
             recyclerView.SetLayoutManager(new LinearLayoutManager(recyclerView.Context));
-            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, values, Activity.Resources));
+            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, exercises.Select(e => e.Description).ToList(), Activity.Resources));
 
             recyclerView.SetItemClickListener((rv, position, view) =>
             {
-                //An item has been clicked
                 Context context = view.Context;
                 Intent intent = new Intent(context, typeof(ExerciseDetailActivity));
-                intent.PutExtra(ExerciseDetailActivity.EXTRA_NAME, values[position]);
+                intent.PutExtra("exercise_id", exercises[position].ExerciseId);
 
                 context.StartActivity(intent);
             });
-        }
-
-        private List<string> GetRandomSubList (List<string> items, int amount)
-        {
-            List<string> list = new List<string>();
-            Random random = new Random();
-            while (list.Count < amount)
-            {
-                list.Add(items[random.Next(items.Count)]);
-            }
-
-            return list;
         }
 
         public class SimpleStringRecyclerViewAdapter : RecyclerView.Adapter

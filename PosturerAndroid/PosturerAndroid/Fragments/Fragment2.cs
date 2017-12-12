@@ -2,6 +2,8 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+using PosturerAndroid.Services;
+using System.Net;
 using SupportFragment = Android.Support.V4.App.Fragment;
 
 namespace PosturerAndroid.Fragments
@@ -21,13 +23,21 @@ namespace PosturerAndroid.Fragments
 
             Button btnLogin = view.FindViewById<Button>(Resource.Id.btnLogin);
             TextInputLayout passwordWrapper = view.FindViewById<TextInputLayout>(Resource.Id.txtInputLayoutPassword);
-            string txtPassword = passwordWrapper.EditText.Text;
+            TextInputLayout emailWrapper = view.FindViewById<TextInputLayout>(Resource.Id.txtEmail);
 
             btnLogin.Click += (o, e) =>
             {
-                if (txtPassword != "1234")
+                string txtPassword = passwordWrapper.EditText.Text;
+                string txtEmail = emailWrapper.EditText.Text;
+
+                try
                 {
-                    passwordWrapper.Error = "Wrong password, try again";
+                    string token = new RestService().SignIn(txtEmail, txtPassword);
+                    passwordWrapper.Error = token;
+                }
+                catch (WebException ex)
+                {
+                    passwordWrapper.Error = "Incorrect username or password";
                 }
             };
 

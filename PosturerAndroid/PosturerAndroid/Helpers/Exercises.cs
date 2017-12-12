@@ -1,15 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-using Android.App;
-using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace PosturerAndroid.Helpers
 {
@@ -41,7 +33,8 @@ namespace PosturerAndroid.Helpers
         {
             get
             {
-                return new List<string>() {
+                return new List<string>()
+                {
                     "Exercise 1",
                     "Exercise 2",
                     "Exercise 3",
@@ -50,8 +43,8 @@ namespace PosturerAndroid.Helpers
                     "Exercise 6",
                     "Exercise 7",
                     "Exercise 8",
-                    "Exercise 9"
-                    };
+
+                };
             }        
         }
 

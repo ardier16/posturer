@@ -18,6 +18,10 @@
         android:id="@+id/nav_discussion"
         android:icon="@drawable/ic_forum"
         android:title="Posture Level" />
+    <item
+      android:id="@+id/nav_program"
+      android:icon="@drawable/ic_forum"
+      android:title="Training Program" />
   </group>
 
   <item android:title="Authorization">

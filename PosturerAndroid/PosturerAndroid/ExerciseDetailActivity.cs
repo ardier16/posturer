@@ -3,17 +3,24 @@ using Android.OS;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Android.Support.Design.Widget;
-using System;
 using Android.Widget;
-using PosturerAndroid.Helpers;
 using Android.Views;
+using Widget = Android.Support.V7.Widget;
+
+using PosturerAndroid.Helpers;
+using PosturerAndroid.Models;
+using PosturerAndroid.Services;
+using Android.Support.V4.Widget;
+using Android.Support.V7.Widget;
 
 namespace PosturerAndroid
 {
     [Activity(Label = "ExerciseDetailActivity", Theme = "@style/Theme.DesignDemo")]
     public class ExerciseDetailActivity : AppCompatActivity
     {
-        public const string EXTRA_NAME = "exercise_name";
+        public const int EXERCISE_ID = 0;
+        private Exercise exercise;
+        private CoordinatorLayout cl;
                
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,12 +32,30 @@ namespace PosturerAndroid
             SetSupportActionBar(toolBar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            string cheeseName = Intent.GetStringExtra(EXTRA_NAME);
+            cl = FindViewById<CoordinatorLayout>(Resource.Id.main_content);
+            LinearLayout l = (LinearLayout)((NestedScrollView)cl.GetChildAt(1)).GetChildAt(0);
+
+            exercise = new RestService().GetExercise(Intent.GetIntExtra("exercise_id", EXERCISE_ID));
+            string exerciseName = exercise.Description;
+
+            CardView cardView = (CardView)l.GetChildAt(0);
+            TextView t = (TextView)((LinearLayout)cardView.GetChildAt(0)).GetChildAt(1);
+            t.Text = exercise.Steps[0].Text;
+
+            for (int i = 1; i < exercise.Steps.Count; i++)
+            {
+                CardView c = (CardView)LayoutInflater.Inflate(Resource.Menu.card_template, null);
+                TextView title = (TextView)((LinearLayout)c.GetChildAt(0)).GetChildAt(0);
+                TextView text = (TextView)((LinearLayout)c.GetChildAt(0)).GetChildAt(1);
+                title.Text = "#" + exercise.Steps[i].StepNumber;
+                text.Text = exercise.Steps[i].Text;
+                c.LayoutParameters = cardView.LayoutParameters;
+                l.AddView(c);
+            }
 
             CollapsingToolbarLayout collapsingToolBar = FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
-            collapsingToolBar.Title = cheeseName;
+            collapsingToolBar.Title = exerciseName;
 
-            LoadBackDrop();
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -43,18 +68,6 @@ namespace PosturerAndroid
             }
 
             return base.OnOptionsItemSelected(item);
-        }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.sample_actions, menu);
-            return true;
-        }
-
-        private void LoadBackDrop()
-        {
-            ImageView imageView = FindViewById<ImageView>(Resource.Id.backdrop);
-            imageView.SetImageResource(Exercises.RandomCheeseDrawable);
         }
     }
 }

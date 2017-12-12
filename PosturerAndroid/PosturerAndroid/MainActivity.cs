@@ -1,9 +1,10 @@
-﻿using System;
+﻿using System.Collections.Generic;
+
+using Java.Lang;
+
 using Android.App;
 using Android.Content;
-using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Android.Support.V4.Widget;
 using SupportFragment = Android.Support.V4.App.Fragment;
@@ -14,8 +15,7 @@ using Android.Support.V7.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.App;
-using System.Collections.Generic;
-using Java.Lang;
+
 using PosturerAndroid.Fragments;
 
 namespace PosturerAndroid
@@ -48,28 +48,11 @@ namespace PosturerAndroid
             }
 
             TabLayout tabs = FindViewById<TabLayout>(Resource.Id.tabs);
-
             ViewPager viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
 
             SetUpViewPager(viewPager);
 
             tabs.SetupWithViewPager(viewPager);
-
-            FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
-
-            fab.Click += (o, e) =>
-            {
-                View anchor = o as View;
-
-                Snackbar.Make(anchor, "Yay Snackbar!!", Snackbar.LengthLong)
-                        .SetAction("Action", v =>
-                        {
-                            //Do something here
-                            Intent intent = new Intent(fab.Context, typeof(BottomSheetActivity));
-                            StartActivity(intent);
-                        })
-                        .Show();
-            };
         }
 
         private void SetUpViewPager(ViewPager viewPager)
@@ -109,7 +92,7 @@ namespace PosturerAndroid
             public List<SupportFragment> Fragments { get; set; }
             public List<string> FragmentNames { get; set; }
 
-            public TabAdapter (SupportFragmentManager sfm) : base (sfm)
+            public TabAdapter(SupportFragmentManager sfm) : base (sfm)
             {
                 Fragments = new List<SupportFragment>();
                 FragmentNames = new List<string>();

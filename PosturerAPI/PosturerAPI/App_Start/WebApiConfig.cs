@@ -27,6 +27,10 @@ namespace PosturerAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            var formatters = config.Formatters;
+
+            formatters.Remove(formatters.XmlFormatter);
         }
     }
 }

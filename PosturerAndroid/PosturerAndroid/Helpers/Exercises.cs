@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 using Android.Graphics;
@@ -8,7 +8,7 @@ namespace PosturerAndroid.Helpers
     public static class Exercises
     {
         private static Random RANDOM = new Random();
-        
+
         public static int RandomCheeseDrawable
         {
             get
@@ -28,7 +28,7 @@ namespace PosturerAndroid.Helpers
                         return Resource.Drawable.Icon;
                 }
             }
-        }        
+        }
         public static List<string> ExerciseStrings
         {
             get
@@ -45,7 +45,7 @@ namespace PosturerAndroid.Helpers
                     "Exercise 8",
 
                 };
-            }        
+            }
         }
 
         public static int CalculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight)

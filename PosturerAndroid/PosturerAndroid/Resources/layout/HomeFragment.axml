@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:text="E-mail:"
+      android:textSize="32sp"
+      android:textColor="#333333"
+      android:layout_gravity="top"
+      android:textStyle="bold"
+    android:padding="8dp"/>
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:id="@+id/user_email"
+      android:textSize="20sp"
+      android:textColor="#333333"
+    android:padding="8dp"/>
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:text="User Name:"
+      android:textSize="32sp"
+      android:textColor="#333333"
+      android:textStyle="bold"
+    android:padding="8dp" />
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:id="@+id/user_name"
+      android:textSize="20sp"
+      android:textColor="#333333"
+    android:padding="8dp"/>
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:text="Status:"
+      android:textSize="32sp"
+      android:textColor="#333333"
+      android:textStyle="bold"
+    android:padding="8dp" />
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:id="@+id/user_status"
+      android:textSize="20sp"
+      android:textColor="#333333"
+    android:padding="8dp" />
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:text="Registration Date:"
+      android:textSize="32sp"
+      android:textColor="#333333"
+      android:textStyle="bold" 
+    android:padding="8dp"/>
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:id="@+id/user_reg_date"
+      android:textSize="20sp"
+      android:textColor="#333333"
+    android:padding="8dp"/>
+</LinearLayout>

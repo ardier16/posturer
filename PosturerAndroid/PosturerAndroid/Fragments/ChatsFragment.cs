@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -17,9 +17,9 @@ using PosturerAndroid.Models;
 
 namespace PosturerAndroid.Fragments
 {
-    public class Fragment1 : Fragment
+    public class ChatsFragment : Fragment
     {
-        private List<Exercise> exercises;
+        private List<Chat> chats;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -38,16 +38,16 @@ namespace PosturerAndroid.Fragments
 
         private void SetUpRecyclerView(RecyclerView recyclerView)
         {
-            exercises = new RestService().GetAllExercises();
+            chats = new RestService().GetChats(MainActivity.GetToken());
 
             recyclerView.SetLayoutManager(new LinearLayoutManager(recyclerView.Context));
-            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, exercises.Select(e => e.Description).ToList(), Activity.Resources));
+            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, chats.Select(e => e.UserName).ToList(), Activity.Resources));
 
             recyclerView.SetItemClickListener((rv, position, view) =>
             {
                 Context context = view.Context;
-                Intent intent = new Intent(context, typeof(ExerciseDetailActivity));
-                intent.PutExtra("exercise_id", exercises[position].ExerciseId);
+                Intent intent = new Intent(context, typeof(ChatActivity));
+                intent.PutExtra("chat_id", chats[position].ChatId);
 
                 context.StartActivity(intent);
             });

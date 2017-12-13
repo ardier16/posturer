@@ -1,14 +1,14 @@
+using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using PosturerAndroid.Services;
 using System.Net;
-using SupportFragment = Android.Support.V4.App.Fragment;
 
 namespace PosturerAndroid.Fragments
 {
-    public class Fragment3 : SupportFragment
+    public class Fragment3 : Fragment
 
     {
         public override void OnCreate(Bundle savedInstanceState)
@@ -23,6 +23,7 @@ namespace PosturerAndroid.Fragments
             View view = inflater.Inflate(Resource.Layout.Fragment3, container, false);
 
             Button btnSignUp = view.FindViewById<Button>(Resource.Id.btnSignUp);
+            TextView registerMessage = view.FindViewById<TextView>(Resource.Id.register_message);
             TextInputLayout passwordWrapper = view.FindViewById<TextInputLayout>(Resource.Id.signUpPassword);
             TextInputLayout confirmPasswordWrapper = view.FindViewById<TextInputLayout>(Resource.Id.signUpConfirmPassword);
             TextInputLayout emailWrapper = view.FindViewById<TextInputLayout>(Resource.Id.signUpEmail);
@@ -36,11 +37,11 @@ namespace PosturerAndroid.Fragments
                 try
                 {
                     new RestService().SignUp(txtEmail, txtPassword);
-                    passwordWrapper.Error = "You've succesfully signed up!";
+                    registerMessage.Text = "You've succesfully signed up!";
                 }
                 catch (WebException ex)
                 {
-                    passwordWrapper.Error = "Incorrect username or password";
+                    passwordWrapper.Error = "Incorrect data";
                 }
             };
 

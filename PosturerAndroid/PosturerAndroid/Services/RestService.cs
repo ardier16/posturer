@@ -19,8 +19,10 @@ namespace PosturerAndroid.Services
 
         public RestService()
         {
-            client = new HttpClient();
-            client.MaxResponseContentBufferSize = 256000;
+            client = new HttpClient
+            {
+                MaxResponseContentBufferSize = 256000
+            };
         }
 
         public List<Exercise> GetAllExercises()
@@ -131,6 +133,141 @@ namespace PosturerAndroid.Services
             {
                 var result = streamReader.ReadToEnd();
             }
+        }
+
+        public TrainingProgram GetTrainingProgram(string token)
+        {
+            TrainingProgram program = new TrainingProgram();
+
+            var uri = new Uri(ApiUrl + "trainingprogram/");
+
+
+            var request = WebRequest.Create(uri);
+            request.ContentType = "application/json";
+            request.Method = "GET";
+            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
+
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    var content = reader.ReadToEnd();
+                    if (!string.IsNullOrWhiteSpace(content))
+                    {
+                        program = JsonConvert.DeserializeObject<TrainingProgram>(content);
+                    }
+                }
+            }
+
+            return program;
+        }
+
+        public List<PostureLevel> GetPostureLevels(string token)
+        {
+            List<PostureLevel> levels = new List<PostureLevel>();
+
+            var uri = new Uri(ApiUrl + "posturelevel/");
+
+
+            var request = WebRequest.Create(uri);
+            request.ContentType = "application/json";
+            request.Method = "GET";
+            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
+
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    var content = reader.ReadToEnd();
+                    if (!string.IsNullOrWhiteSpace(content))
+                    {
+                        levels = JsonConvert.DeserializeObject<List<PostureLevel>>(content);
+                    }
+                }
+            }
+
+            return levels;
+        }
+
+        public List<Chat> GetChats(string token)
+        {
+            List<Chat> chats = new List<Chat>();
+
+            var uri = new Uri(ApiUrl + "chat/chats/");
+
+
+            var request = WebRequest.Create(uri);
+            request.ContentType = "application/json";
+            request.Method = "GET";
+            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
+
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    var content = reader.ReadToEnd();
+                    if (!string.IsNullOrWhiteSpace(content))
+                    {
+                        chats = JsonConvert.DeserializeObject<List<Chat>>(content);
+                    }
+                }
+            }
+
+            return chats;
+        }
+
+        public List<Message> GetMessages(int chatId, string token)
+        {
+            List<Message> messages = new List<Message>();
+
+            var uri = new Uri(ApiUrl + "chat/" + chatId);
+
+
+            var request = WebRequest.Create(uri);
+            request.ContentType = "application/json";
+            request.Method = "GET";
+            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
+
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    var content = reader.ReadToEnd();
+                    if (!string.IsNullOrWhiteSpace(content))
+                    {
+                        messages = JsonConvert.DeserializeObject<List<Message>>(content);
+                    }
+                }
+            }
+
+            return messages;
+        }
+
+        public User GetUserInfo(string token)
+        {
+            User user = new User();
+
+            var uri = new Uri(ApiUrl + "account/userinfo");
+
+
+            var request = WebRequest.Create(uri);
+            request.ContentType = "application/json";
+            request.Method = "GET";
+            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
+
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            {
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    var content = reader.ReadToEnd();
+                    if (!string.IsNullOrWhiteSpace(content))
+                    {
+                        user = JsonConvert.DeserializeObject<User>(content);
+                    }
+                }
+            }
+
+            return user;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace PosturerAndroid
 		
 		public static void UpdateIdValues()
 		{
+			global::Microcharts.Droid.Resource.String.library_name = global::PosturerAndroid.Resource.String.library_name;
 		}
 		
 		public partial class Animation
@@ -1927,8 +1928,8 @@ namespace PosturerAndroid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060089
-			public const int action0 = 2131099785;
+			// aapt resource value: 0x7f06008e
+			public const int action0 = 2131099790;
 			
 			// aapt resource value: 0x7f06005a
 			public const int action_bar = 2131099738;
@@ -1954,8 +1955,8 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06005b
 			public const int action_context_bar = 2131099739;
 			
-			// aapt resource value: 0x7f06008d
-			public const int action_divider = 2131099789;
+			// aapt resource value: 0x7f060092
+			public const int action_divider = 2131099794;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -1972,8 +1973,8 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06003c
 			public const int action_mode_close_button = 2131099708;
 			
-			// aapt resource value: 0x7f06009b
-			public const int action_settings = 2131099803;
+			// aapt resource value: 0x7f0600a4
+			public const int action_settings = 2131099812;
 			
 			// aapt resource value: 0x7f06003d
 			public const int activity_chooser_view_content = 2131099709;
@@ -1987,8 +1988,8 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06006c
 			public const int appbar = 2131099756;
 			
-			// aapt resource value: 0x7f060085
-			public const int avatar = 2131099781;
+			// aapt resource value: 0x7f06008a
+			public const int avatar = 2131099786;
 			
 			// aapt resource value: 0x7f06006e
 			public const int backdrop = 2131099758;
@@ -2002,17 +2003,17 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f060069
 			public const int bottom_sheet = 2131099753;
 			
-			// aapt resource value: 0x7f06007d
-			public const int btnLogin = 2131099773;
+			// aapt resource value: 0x7f06007e
+			public const int btnLogin = 2131099774;
 			
-			// aapt resource value: 0x7f060081
-			public const int btnSignUp = 2131099777;
+			// aapt resource value: 0x7f060083
+			public const int btnSignUp = 2131099779;
 			
 			// aapt resource value: 0x7f060044
 			public const int buttonPanel = 2131099716;
 			
-			// aapt resource value: 0x7f06008a
-			public const int cancel_action = 2131099786;
+			// aapt resource value: 0x7f06008f
+			public const int cancel_action = 2131099791;
 			
 			// aapt resource value: 0x7f06002b
 			public const int center = 2131099691;
@@ -2023,11 +2024,14 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06002d
 			public const int center_vertical = 2131099693;
 			
+			// aapt resource value: 0x7f06009b
+			public const int chart = 2131099803;
+			
 			// aapt resource value: 0x7f060052
 			public const int checkbox = 2131099730;
 			
-			// aapt resource value: 0x7f060090
-			public const int chronometer = 2131099792;
+			// aapt resource value: 0x7f060095
+			public const int chronometer = 2131099797;
 			
 			// aapt resource value: 0x7f060033
 			public const int clip_horizontal = 2131099699;
@@ -2040,6 +2044,9 @@ namespace PosturerAndroid
 			
 			// aapt resource value: 0x7f06006d
 			public const int collapsing_toolbar = 2131099757;
+			
+			// aapt resource value: 0x7f060089
+			public const int container = 2131099785;
 			
 			// aapt resource value: 0x7f06004a
 			public const int contentPanel = 2131099722;
@@ -2074,8 +2081,8 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06000e
 			public const int disableHome = 2131099662;
 			
-			// aapt resource value: 0x7f060087
-			public const int drawer_layout = 2131099783;
+			// aapt resource value: 0x7f06008c
+			public const int drawer_layout = 2131099788;
 			
 			// aapt resource value: 0x7f06005c
 			public const int edit_query = 2131099740;
@@ -2083,8 +2090,8 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06001c
 			public const int end = 2131099676;
 			
-			// aapt resource value: 0x7f060095
-			public const int end_padder = 2131099797;
+			// aapt resource value: 0x7f06009a
+			public const int end_padder = 2131099802;
 			
 			// aapt resource value: 0x7f060023
 			public const int enterAlways = 2131099683;
@@ -2131,8 +2138,8 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06003f
 			public const int image = 2131099711;
 			
-			// aapt resource value: 0x7f060094
-			public const int info = 2131099796;
+			// aapt resource value: 0x7f060099
+			public const int info = 2131099801;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
@@ -2140,11 +2147,11 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06002f
 			public const int left = 2131099695;
 			
-			// aapt resource value: 0x7f06008e
-			public const int line1 = 2131099790;
+			// aapt resource value: 0x7f060093
+			public const int line1 = 2131099795;
 			
-			// aapt resource value: 0x7f060092
-			public const int line3 = 2131099794;
+			// aapt resource value: 0x7f060097
+			public const int line3 = 2131099799;
 			
 			// aapt resource value: 0x7f06000b
 			public const int listMode = 2131099659;
@@ -2152,11 +2159,14 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f060041
 			public const int list_item = 2131099713;
 			
+			// aapt resource value: 0x7f06007a
+			public const int login_message = 2131099770;
+			
 			// aapt resource value: 0x7f06006b
 			public const int main_content = 2131099755;
 			
-			// aapt resource value: 0x7f06008c
-			public const int media_actions = 2131099788;
+			// aapt resource value: 0x7f060091
+			public const int media_actions = 2131099793;
 			
 			// aapt resource value: 0x7f06001d
 			public const int middle = 2131099677;
@@ -2167,23 +2177,29 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f060016
 			public const int multiply = 2131099670;
 			
-			// aapt resource value: 0x7f060099
-			public const int nav_discussion = 2131099801;
+			// aapt resource value: 0x7f06009f
+			public const int nav_chats = 2131099807;
 			
-			// aapt resource value: 0x7f060098
-			public const int nav_friends = 2131099800;
+			// aapt resource value: 0x7f06009e
+			public const int nav_exercises = 2131099806;
 			
-			// aapt resource value: 0x7f060096
-			public const int nav_home = 2131099798;
+			// aapt resource value: 0x7f06009d
+			public const int nav_home = 2131099805;
 			
-			// aapt resource value: 0x7f060097
-			public const int nav_messages = 2131099799;
+			// aapt resource value: 0x7f0600a0
+			public const int nav_posturelevel = 2131099808;
 			
-			// aapt resource value: 0x7f06009a
-			public const int nav_program = 2131099802;
+			// aapt resource value: 0x7f0600a1
+			public const int nav_program = 2131099809;
 			
-			// aapt resource value: 0x7f060088
-			public const int nav_view = 2131099784;
+			// aapt resource value: 0x7f0600a2
+			public const int nav_signin = 2131099810;
+			
+			// aapt resource value: 0x7f0600a3
+			public const int nav_signup = 2131099811;
+			
+			// aapt resource value: 0x7f06008d
+			public const int nav_view = 2131099789;
 			
 			// aapt resource value: 0x7f060074
 			public const int navigation_header_container = 2131099764;
@@ -2217,6 +2233,9 @@ namespace PosturerAndroid
 			
 			// aapt resource value: 0x7f060079
 			public const int recyclerview = 2131099769;
+			
+			// aapt resource value: 0x7f06007f
+			public const int register_message = 2131099775;
 			
 			// aapt resource value: 0x7f060030
 			public const int right = 2131099696;
@@ -2284,14 +2303,14 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f060013
 			public const int showTitle = 2131099667;
 			
+			// aapt resource value: 0x7f060082
+			public const int signUpConfirmPassword = 2131099778;
+			
 			// aapt resource value: 0x7f060080
-			public const int signUpConfirmPassword = 2131099776;
+			public const int signUpEmail = 2131099776;
 			
-			// aapt resource value: 0x7f06007e
-			public const int signUpEmail = 2131099774;
-			
-			// aapt resource value: 0x7f06007f
-			public const int signUpPassword = 2131099775;
+			// aapt resource value: 0x7f060081
+			public const int signUpPassword = 2131099777;
 			
 			// aapt resource value: 0x7f060073
 			public const int snackbar_action = 2131099763;
@@ -2320,8 +2339,8 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f060031
 			public const int start = 2131099697;
 			
-			// aapt resource value: 0x7f06008b
-			public const int status_bar_latest_event_content = 2131099787;
+			// aapt resource value: 0x7f060090
+			public const int status_bar_latest_event_content = 2131099792;
 			
 			// aapt resource value: 0x7f060065
 			public const int submit_area = 2131099749;
@@ -2329,23 +2348,20 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f06000d
 			public const int tabMode = 2131099661;
 			
-			// aapt resource value: 0x7f060083
-			public const int tabs = 2131099779;
+			// aapt resource value: 0x7f060098
+			public const int text = 2131099800;
 			
-			// aapt resource value: 0x7f060093
-			public const int text = 2131099795;
+			// aapt resource value: 0x7f06008b
+			public const int text1 = 2131099787;
 			
-			// aapt resource value: 0x7f060086
-			public const int text1 = 2131099782;
-			
-			// aapt resource value: 0x7f060091
-			public const int text2 = 2131099793;
+			// aapt resource value: 0x7f060096
+			public const int text2 = 2131099798;
 			
 			// aapt resource value: 0x7f06004d
 			public const int textSpacerNoButtons = 2131099725;
 			
-			// aapt resource value: 0x7f06008f
-			public const int time = 2131099791;
+			// aapt resource value: 0x7f060094
+			public const int time = 2131099796;
 			
 			// aapt resource value: 0x7f060043
 			public const int title = 2131099715;
@@ -2353,8 +2369,8 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f060048
 			public const int title_template = 2131099720;
 			
-			// aapt resource value: 0x7f060082
-			public const int toolBar = 2131099778;
+			// aapt resource value: 0x7f060088
+			public const int toolBar = 2131099784;
 			
 			// aapt resource value: 0x7f06006f
 			public const int toolbar = 2131099759;
@@ -2368,14 +2384,17 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f060070
 			public const int touch_outside = 2131099760;
 			
-			// aapt resource value: 0x7f06007a
-			public const int txtEmail = 2131099770;
+			// aapt resource value: 0x7f06009c
+			public const int training_program_view = 2131099804;
 			
 			// aapt resource value: 0x7f06007b
-			public const int txtInputLayoutPassword = 2131099771;
+			public const int txtEmail = 2131099771;
 			
 			// aapt resource value: 0x7f06007c
-			public const int txtPassword = 2131099772;
+			public const int txtInputLayoutPassword = 2131099772;
+			
+			// aapt resource value: 0x7f06007d
+			public const int txtPassword = 2131099773;
 			
 			// aapt resource value: 0x7f060009
 			public const int up = 2131099657;
@@ -2383,11 +2402,20 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f060014
 			public const int useLogo = 2131099668;
 			
+			// aapt resource value: 0x7f060084
+			public const int user_email = 2131099780;
+			
+			// aapt resource value: 0x7f060085
+			public const int user_name = 2131099781;
+			
+			// aapt resource value: 0x7f060087
+			public const int user_reg_date = 2131099783;
+			
+			// aapt resource value: 0x7f060086
+			public const int user_status = 2131099782;
+			
 			// aapt resource value: 0x7f06000a
 			public const int view_offset_helper = 2131099658;
-			
-			// aapt resource value: 0x7f060084
-			public const int viewpager = 2131099780;
 			
 			// aapt resource value: 0x7f060022
 			public const int withText = 2131099682;
@@ -2569,52 +2597,61 @@ namespace PosturerAndroid
 			public const int Fragment3 = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int include_list_viewpager = 2130903082;
+			public const int HomeFragment = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int List_Item = 2130903083;
+			public const int include_list_viewpager = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int Main = 2130903084;
+			public const int List_Item = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int nav_header = 2130903085;
+			public const int Main = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int notification_media_action = 2130903086;
+			public const int nav_header = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int notification_media_cancel_action = 2130903087;
+			public const int notification_media_action = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int notification_template_big_media = 2130903088;
+			public const int notification_media_cancel_action = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int notification_template_big_media_narrow = 2130903089;
+			public const int notification_template_big_media = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int notification_template_lines = 2130903090;
+			public const int notification_template_big_media_narrow = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_template_media = 2130903091;
+			public const int notification_template_lines = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_template_part_chronometer = 2130903092;
+			public const int notification_template_media = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_template_part_time = 2130903093;
+			public const int notification_template_part_chronometer = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int select_dialog_item_material = 2130903094;
+			public const int notification_template_part_time = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int select_dialog_multichoice_material = 2130903095;
+			public const int PostureLevelFragment = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int select_dialog_singlechoice_material = 2130903096;
+			public const int select_dialog_item_material = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int support_simple_spinner_dropdown_item = 2130903097;
+			public const int select_dialog_multichoice_material = 2130903097;
+			
+			// aapt resource value: 0x7f03003a
+			public const int select_dialog_singlechoice_material = 2130903098;
+			
+			// aapt resource value: 0x7f03003b
+			public const int support_simple_spinner_dropdown_item = 2130903099;
+			
+			// aapt resource value: 0x7f03003c
+			public const int TrainingProgramFragment = 2130903100;
 			
 			static Layout()
 			{
@@ -2651,11 +2688,11 @@ namespace PosturerAndroid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f090018
-			public const int ApplicationName = 2131296280;
+			// aapt resource value: 0x7f090019
+			public const int ApplicationName = 2131296281;
 			
-			// aapt resource value: 0x7f090017
-			public const int Hello = 2131296279;
+			// aapt resource value: 0x7f090018
+			public const int Hello = 2131296280;
 			
 			// aapt resource value: 0x7f090000
 			public const int abc_action_bar_home_description = 2131296256;
@@ -2723,14 +2760,41 @@ namespace PosturerAndroid
 			// aapt resource value: 0x7f090016
 			public const int character_counter_pattern = 2131296278;
 			
-			// aapt resource value: 0x7f09001a
-			public const int checkin = 2131296282;
-			
-			// aapt resource value: 0x7f090019
-			public const int exercise_ipsum = 2131296281;
+			// aapt resource value: 0x7f09001f
+			public const int chats_title = 2131296287;
 			
 			// aapt resource value: 0x7f09001b
-			public const int menu_settings = 2131296283;
+			public const int checkin = 2131296283;
+			
+			// aapt resource value: 0x7f09001a
+			public const int exercise_ipsum = 2131296282;
+			
+			// aapt resource value: 0x7f09001d
+			public const int exercises_title = 2131296285;
+			
+			// aapt resource value: 0x7f09001e
+			public const int home_title = 2131296286;
+			
+			// aapt resource value: 0x7f090017
+			public const int library_name = 2131296279;
+			
+			// aapt resource value: 0x7f09001c
+			public const int menu_settings = 2131296284;
+			
+			// aapt resource value: 0x7f090020
+			public const int posturelevel_title = 2131296288;
+			
+			// aapt resource value: 0x7f090021
+			public const int program_title = 2131296289;
+			
+			// aapt resource value: 0x7f090022
+			public const int signin_title = 2131296290;
+			
+			// aapt resource value: 0x7f090024
+			public const int signout_title = 2131296292;
+			
+			// aapt resource value: 0x7f090023
+			public const int signup_title = 2131296291;
 			
 			// aapt resource value: 0x7f090013
 			public const int status_bar_notification_info_overflow = 2131296275;

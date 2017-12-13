@@ -17,6 +17,8 @@ using Android.Support.V4.View;
 using Android.Support.V4.App;
 
 using PosturerAndroid.Fragments;
+using Android.Widget;
+using Android.Preferences;
 
 namespace PosturerAndroid
 {
@@ -24,6 +26,13 @@ namespace PosturerAndroid
     public class MainActivity : AppCompatActivity
     {
         private DrawerLayout mDrawerLayout;
+        private Fragment1 fragment1;
+        private Fragment2 fragment2;
+        private Fragment3 fragment3;
+        private TrainingProgramFragment trainingProgramFragment;
+        private PostureLevelFragment postureLevelFragment;
+        private ChatsFragment chatsFragment;
+        private HomeFragment homeFragment;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -47,22 +56,17 @@ namespace PosturerAndroid
                 SetUpDrawerContent(navigationView);
             }
 
-            TabLayout tabs = FindViewById<TabLayout>(Resource.Id.tabs);
-            ViewPager viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
+            FrameLayout viewPager = FindViewById<FrameLayout>(Resource.Id.container);
+            fragment1 = new Fragment1();
+            fragment2 = new Fragment2();
+            fragment3 = new Fragment3();
+            trainingProgramFragment = new TrainingProgramFragment();
+            postureLevelFragment = new PostureLevelFragment();
+            chatsFragment = new ChatsFragment();
+            homeFragment = new HomeFragment();
 
-            SetUpViewPager(viewPager);
-
-            tabs.SetupWithViewPager(viewPager);
-        }
-
-        private void SetUpViewPager(ViewPager viewPager)
-        {
-            TabAdapter adapter = new TabAdapter(SupportFragmentManager);
-            adapter.AddFragment(new Fragment1(), "Fragment 1");
-            adapter.AddFragment(new Fragment2(), "Fragment 2");
-            adapter.AddFragment(new Fragment3(), "Fragment 3");
-
-            viewPager.Adapter = adapter;
+            Android.App.FragmentTransaction ftrans = FragmentManager.BeginTransaction();
+            ftrans.Replace(Resource.Id.container, fragment2).Commit();
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -82,45 +86,93 @@ namespace PosturerAndroid
         {
             navigationView.NavigationItemSelected += (object sender, NavigationView.NavigationItemSelectedEventArgs e) =>
             {
+                Android.App.FragmentTransaction ftrans = FragmentManager.BeginTransaction();
+
+                switch (e.MenuItem.ItemId)
+                {
+                    case Resource.Id.nav_exercises:
+                        SetTitle(Resource.String.exercises_title);
+                        ftrans.Replace(Resource.Id.container, fragment1).Commit();
+                        break;
+                    case Resource.Id.nav_home:
+                        SetTitle(Resource.String.home_title);
+                        if (GetToken() != "")
+                        {
+                            ftrans.Replace(Resource.Id.container, homeFragment).Commit();
+                        }
+                        else
+                        {
+                            ftrans.Replace(Resource.Id.container, fragment2).Commit();
+                        }
+                        break;
+                    case Resource.Id.nav_signin:
+                        SetTitle(Resource.String.signin_title);
+                        ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+                        ISharedPreferencesEditor editor = prefs.Edit();
+                        editor.PutString("access_token", "");
+                        editor.Apply();
+                        fragment2 = new Fragment2();
+                        ftrans.Replace(Resource.Id.container, fragment2).Commit();
+                        break;
+                    case Resource.Id.nav_signup:
+                        SetTitle(Resource.String.signup_title);
+                        fragment3 = new Fragment3();
+                        ftrans.Replace(Resource.Id.container, fragment3).Commit();
+                        break;
+                    case Resource.Id.nav_chats:
+                        SetTitle(Resource.String.chats_title);
+                        if (GetToken() != "")
+                        {
+                            ftrans.Replace(Resource.Id.container, chatsFragment).Commit();
+                        }
+                        else
+                        {
+                            ftrans.Replace(Resource.Id.container, fragment2).Commit();
+                        }
+                        break;
+                    case Resource.Id.nav_posturelevel:
+                        SetTitle(Resource.String.posturelevel_title);
+                        if (GetToken() != "")
+                        {
+                            ftrans.Replace(Resource.Id.container, postureLevelFragment).Commit();
+                        }
+                        else
+                        {
+                            ftrans.Replace(Resource.Id.container, fragment2).Commit();
+                        }
+                        break;
+                    case Resource.Id.nav_program:
+                        SetTitle(Resource.String.program_title);
+                        if (GetToken() != "")
+                        {
+                            ftrans.Replace(Resource.Id.container, trainingProgramFragment).Commit();
+                        }
+                        else
+                        {
+                            ftrans.Replace(Resource.Id.container, fragment2).Commit();
+                        }
+                        break;
+                }
+                
+
+                if (GetToken() != "")
+                {
+                    navigationView.Menu.GetItem(5).SetTitle("Sign Out");
+                }
+                else
+                {
+                    navigationView.Menu.GetItem(5).SetTitle("Sign In");
+                }
+
                 e.MenuItem.SetChecked(true);
                 mDrawerLayout.CloseDrawers();
-            };
+            };            
         }
 
-        public class TabAdapter : FragmentPagerAdapter
+        public static string GetToken()
         {
-            public List<SupportFragment> Fragments { get; set; }
-            public List<string> FragmentNames { get; set; }
-
-            public TabAdapter(SupportFragmentManager sfm) : base (sfm)
-            {
-                Fragments = new List<SupportFragment>();
-                FragmentNames = new List<string>();
-            }
-
-            public void AddFragment(SupportFragment fragment, string name)
-            {
-                Fragments.Add(fragment);
-                FragmentNames.Add(name);
-            }
-
-            public override int Count
-            {
-                get
-                {
-                    return Fragments.Count;
-                }
-            }
-
-            public override SupportFragment GetItem(int position)
-            {
-                return Fragments[position];
-            }
-
-            public override ICharSequence GetPageTitleFormatted(int position)
-            {
-                return new Java.Lang.String(FragmentNames[position]);
-            }
+            ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
+            return prefs.GetString("access_token", "");
         }
     }
 }

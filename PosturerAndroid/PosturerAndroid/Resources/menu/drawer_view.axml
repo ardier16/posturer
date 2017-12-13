@@ -7,32 +7,28 @@
         android:icon="@drawable/ic_dashboard"
         android:title="Home" />
     <item
-        android:id="@+id/nav_messages"
+        android:id="@+id/nav_exercises"
         android:icon="@drawable/ic_event"
         android:title="Exercises" />
     <item
-        android:id="@+id/nav_friends"
+        android:id="@+id/nav_chats"
         android:icon="@drawable/ic_headset"
         android:title="Chats" />
     <item
-        android:id="@+id/nav_discussion"
+        android:id="@+id/nav_posturelevel"
         android:icon="@drawable/ic_forum"
         android:title="Posture Level" />
     <item
       android:id="@+id/nav_program"
       android:icon="@drawable/ic_forum"
       android:title="Training Program" />
+    <item
+        android:id="@+id/nav_signin"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Sign In" />
+    <item
+        android:id="@+id/nav_signup"
+        android:icon="@drawable/ic_forum"
+        android:title="Sign Up" />
   </group>
-
-  <item android:title="Authorization">
-    <menu>
-      <item
-          android:icon="@drawable/ic_dashboard"
-          android:title="Sign In" />
-      <item
-          android:icon="@drawable/ic_forum"
-          android:title="Sign Up" />
-    </menu>
-  </item>
-
 </menu>

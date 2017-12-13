@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -17,9 +17,9 @@ using PosturerAndroid.Models;
 
 namespace PosturerAndroid.Fragments
 {
-    public class Fragment1 : Fragment
+    public class TrainingProgramFragment : Fragment
     {
-        private List<Exercise> exercises;
+        private TrainingProgram program;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -29,7 +29,7 @@ namespace PosturerAndroid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            RecyclerView recyclerView = inflater.Inflate(Resource.Layout.Fragment1, container, false) as RecyclerView;
+            RecyclerView recyclerView = inflater.Inflate(Resource.Layout.TrainingProgramFragment, container, false) as RecyclerView;
 
             SetUpRecyclerView(recyclerView);
 
@@ -38,16 +38,16 @@ namespace PosturerAndroid.Fragments
 
         private void SetUpRecyclerView(RecyclerView recyclerView)
         {
-            exercises = new RestService().GetAllExercises();
+            program = new RestService().GetTrainingProgram(MainActivity.GetToken());
 
             recyclerView.SetLayoutManager(new LinearLayoutManager(recyclerView.Context));
-            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, exercises.Select(e => e.Description).ToList(), Activity.Resources));
+            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, program.Exercises.Select(e => e.Description).ToList(), Activity.Resources));
 
             recyclerView.SetItemClickListener((rv, position, view) =>
             {
                 Context context = view.Context;
                 Intent intent = new Intent(context, typeof(ExerciseDetailActivity));
-                intent.PutExtra("exercise_id", exercises[position].ExerciseId);
+                intent.PutExtra("exercise_id", program.Exercises[position].ExerciseId);
 
                 context.StartActivity(intent);
             });

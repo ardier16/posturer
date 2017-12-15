@@ -1,0 +1,4 @@
+initializeObjects();
+drawAll();
+initializeSliders();
+setPostureLevel();

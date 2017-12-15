@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8" />
+      <title>Posturer IoT Emulator</title>
+      <link rel="icon" type="image/png" href="favicon.png">
+      <link rel="stylesheet" type="text/css" href="css/emulator.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+      <div class="container">
+            <div class="row">
+                  <div class="col-sm-2">
+                        <div class="image">
+                              <img src="img/posturer.png" class="img-fluid" alt="Posturer" />
+                        </div>
+                  </div>
+                  <div class="col-sm-8">
+                        <div class="header">Posturer Emulator</div>
+                  </div>
+                  <div class="col-sm-2">
+                        <div class="image">
+                              <img src="img/posturer.png" class="img-fluid" alt="Posturer" />
+                        </div>
+                  </div>
+            </div>
+      </div>
+      <hr/>
+      <br/>
+      <br/>
+      <div class="container">
+            <div class="row">
+                  <div class="col">
+                        <canvas id="canvas" width="500" height="300"></canvas>
+                  </div>
+                  <div class="col">
+                        <div class="controls text-center">
+                              <div class="alertField"></div>
+                              <div class="row">
+                                    <div class="col text-center">
+                                          <p>Neck Dot (Back)</p>
+                                          <input class="slider" id="neckSlider" type="range" min="1" max="100" value="50" />
+                                          <p>Back Dot (Back)</p>
+                                          <input class="slider" id="backSlider" type="range" min="1" max="100" value="50" />
+                                    </div>
+                                    <div class="col text-center">
+                                          <p>Neck Dot (Side)</p>
+                                          <input class="slider" id="sideNeckSlider" type="range" min="1" max="100" value="50" />
+                                          <p>Back Dot (Side)</p>
+                                          <input class="slider" id="sideBackSlider" type="range" min="1" max="100" value="50" />
+                                    </div>
+                              </div>
+                              <br/>
+                              <p>Posture Level:
+                                    <strong id="result"></strong>
+                              </p>
+                              <button class="btn btn-success" id="sendBtn">Send To Server</button>
+                        </div>
+                  </div>
+            </div>
+      </div>
+      <footer class="text-center">
+            <p>&copy; 2017 - Posturer, NURE</p>
+      </footer>
+      <script src="js/request.js"></script>      
+      <script src="js/emulator.js"></script>
+      <script src="js/init.js"></script>
+</body>
+
+</html>

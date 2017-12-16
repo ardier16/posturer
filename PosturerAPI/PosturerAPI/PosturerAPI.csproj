@@ -65,11 +65,12 @@
     <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -96,28 +97,8 @@
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -213,28 +194,28 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711010752286_Posturer.cs" />
-    <Compile Include="Migrations\201711010752286_Posturer.Designer.cs">
-      <DependentUpon>201711010752286_Posturer.cs</DependentUpon>
+    <Compile Include="Migrations\PosturerMigration.cs" />
+    <Compile Include="Migrations\PosturerMigration.Designer.cs">
+      <DependentUpon>PosturerMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\TrainingProgramCreator.cs" />
-    <Compile Include="Models\ViewModels\AccountBindingModels.cs" />
-    <Compile Include="Models\ViewModels\TrainingProgramModelView.cs" />
-    <Compile Include="Models\ViewModels\PostureLevelViewModel.cs" />
-    <Compile Include="Models\ViewModels\ExerciseViewModels.cs" />
-    <Compile Include="Models\ViewModels\ChatViewModels.cs" />
-    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
-    <Compile Include="Models\UserChat.cs" />
-    <Compile Include="Models\Chat.cs" />
-    <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\Exercise.cs" />
-    <Compile Include="Models\ExerciseStep.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\PostureLevel.cs" />
-    <Compile Include="Models\PosturerContext.cs" />
-    <Compile Include="Models\ProgramExercise.cs" />
-    <Compile Include="Models\TrainingProgram.cs" />
+    <Compile Include="Services\TrainingProgramGenerator.cs" />
+    <Compile Include="Models\View\AccountBindingModels.cs" />
+    <Compile Include="Models\View\TrainingProgramViewModels.cs" />
+    <Compile Include="Models\View\PostureLevelViewModels.cs" />
+    <Compile Include="Models\View\ExerciseViewModels.cs" />
+    <Compile Include="Models\View\ChatViewModels.cs" />
+    <Compile Include="Models\View\AccountViewModels.cs" />
+    <Compile Include="Models\Entities\UserChat.cs" />
+    <Compile Include="Models\Entities\Chat.cs" />
+    <Compile Include="Models\Entities\Message.cs" />
+    <Compile Include="Models\Entities\Exercise.cs" />
+    <Compile Include="Models\Entities\ExerciseStep.cs" />
+    <Compile Include="Models\Entities\ApplicationUser.cs" />
+    <Compile Include="Models\Entities\PostureLevel.cs" />
+    <Compile Include="Models\Entities\PosturerContext.cs" />
+    <Compile Include="Models\Entities\ProgramExercise.cs" />
+    <Compile Include="Models\Entities\TrainingProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -250,7 +231,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Class Diagram.cd" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -264,16 +244,17 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\Images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711010752286_Posturer.resx">
-      <DependentUpon>201711010752286_Posturer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\PosturerMigration.resx">
+      <DependentUpon>PosturerMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Posturer - Web Deploy.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

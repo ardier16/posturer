@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using PosturerAPI.Models;
 using Microsoft.AspNet.Identity;
 using System.Web.Http.Cors;
+
+using PosturerAPI.Models.Entities;
+using PosturerAPI.Models.View;
 
 namespace PosturerAPI.Controllers
 {
@@ -15,8 +17,8 @@ namespace PosturerAPI.Controllers
     {
         private PosturerContext db = new PosturerContext();
 
+        // GET api/chat/chats
         [Route("Chats")]
-        // GET api/chat/messages
         public IQueryable<ChatViewModel> GetChats()
         {
             string UserId = User.Identity.GetUserId();
@@ -26,15 +28,15 @@ namespace PosturerAPI.Controllers
                 new ChatViewModel
                 {
                     ChatId = m.ChatId,
-                    EMail = db.Users.FirstOrDefault(u => u.Id.Equals(db.UserChats.FirstOrDefault(c => !c.UserId.Equals(m.UserId) && c.ChatId.Equals(m.ChatId)).UserId)).Email,
-                    UserName = db.Users.FirstOrDefault(u => u.Id.Equals(db.UserChats.FirstOrDefault(c => !c.UserId.Equals(m.UserId) && c.ChatId.Equals(m.ChatId)).UserId)).UserName
+                    EMail = db.Users.FirstOrDefault(u => u.Id.Equals(db.UserChats.FirstOrDefault(c => 
+                        !c.UserId.Equals(m.UserId) && c.ChatId.Equals(m.ChatId)).UserId)).Email,
+                        UserName = db.Users.FirstOrDefault(u => u.Id.Equals(db.UserChats.FirstOrDefault(c => 
+                            !c.UserId.Equals(m.UserId) && c.ChatId.Equals(m.ChatId)).UserId)).UserName
                 });
         }
-
-
-
-        [Route("Messages")]
+        
         // GET api/chat/messages
+        [Route("Messages")]
         public IQueryable<MessageViewModel> GetMessages()
         {
             string UserId = User.Identity.GetUserId();
@@ -61,7 +63,8 @@ namespace PosturerAPI.Controllers
                 return BadRequest();
             }
 
-            UserChat uchat = db.UserChats.FirstOrDefault(u => u.UserId.Equals(UserId) && u.ChatId.Equals(id));
+            UserChat uchat = db.UserChats.FirstOrDefault(u => 
+                u.UserId.Equals(UserId) && u.ChatId.Equals(id));
 
             if (!uchat.UserId.Equals(UserId))
             {
@@ -91,7 +94,8 @@ namespace PosturerAPI.Controllers
                 return BadRequest();
             }
 
-            UserChat uchat = db.UserChats.FirstOrDefault(u => u.UserId.Equals(UserId) && u.ChatId.Equals(id));
+            UserChat uchat = db.UserChats.FirstOrDefault(u => 
+                u.UserId.Equals(UserId) && u.ChatId.Equals(id));
 
             if (!uchat.UserId.Equals(UserId))
             {

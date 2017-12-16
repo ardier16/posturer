@@ -2,8 +2,11 @@
 using System.Data;
 using System.Linq;
 using System.Web.Http;
-using PosturerAPI.Models;
 using System.Web.Http.Cors;
+
+using PosturerAPI.Models.Entities;
+using PosturerAPI.Models.View;
+
 
 namespace PosturerAPI.Controllers
 {
@@ -33,7 +36,8 @@ namespace PosturerAPI.Controllers
                 return NotFound();
             }
 
-            List<ExerciseStep> Steps = db.ExerciseSteps.Where(es => es.ExerciseId == exercise.ExerciseId).ToList();
+            List<ExerciseStep> Steps = db.ExerciseSteps.Where(es => 
+                es.ExerciseId == exercise.ExerciseId).ToList();
 
             return Ok(new
             {
@@ -45,7 +49,7 @@ namespace PosturerAPI.Controllers
         }
 
         // POST api/Exercises
-        public IHttpActionResult Post([FromBody] ExerciseViewModel model)
+        public IHttpActionResult Post([FromBody]ExerciseViewModel model)
         {
             var ex = new Exercise
             {

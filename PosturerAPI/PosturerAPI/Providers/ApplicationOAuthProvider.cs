@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using PosturerAPI.Models;
 using System.Web.Http.Cors;
+
+using PosturerAPI.Models.Entities;
 
 namespace PosturerAPI.Providers
 {
@@ -32,8 +30,8 @@ namespace PosturerAPI.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
+            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
@@ -72,7 +70,6 @@ namespace PosturerAPI.Providers
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            // Учетные данные владельца ресурса не содержат идентификатор клиента.
             if (context.ClientId == null)
             {
                 context.Validated();

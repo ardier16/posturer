@@ -79,7 +79,7 @@ namespace PosturerAndroid.Services
 
         public string SignIn(string username, string password)
         {
-            var uri = new Uri("http://posturer.azurewebsites.net/token");
+            var uri = new Uri(ApiUrl + "account/login");
 
             var request = (HttpWebRequest)WebRequest.Create(uri);
             var postData = "userName=" + username;

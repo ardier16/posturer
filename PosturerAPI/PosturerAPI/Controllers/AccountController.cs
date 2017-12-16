@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using PosturerAPI.Models;
-using PosturerAPI.Providers;
-using PosturerAPI.Results;
 using System.Web.Http.Cors;
+
+using PosturerAPI.Models.Entities;
+using PosturerAPI.Models.View;
 
 namespace PosturerAPI.Controllers
 {
@@ -94,6 +88,7 @@ namespace PosturerAPI.Controllers
             return await GetUserInfo();
         }
 
+        // GET api/Account/ChangeUsername
         [Route("ChangeUsername")]
         public async Task<IHttpActionResult> ChangeUsername(ChangeUsernameBindingModel model)
         {

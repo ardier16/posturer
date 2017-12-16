@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 export class AuthenticationService {
     constructor(private http: Http) { }
     // API URL for accessing Bearer Authentication Token
-    private loginUrl = 'http://posturer.azurewebsites.net/token';
+    private loginUrl = 'http://posturer.azurewebsites.net/account/login';
 
     login(email: string, password: string) {
         return this.http.post(this.loginUrl, 'userName=' + email + '&password=' + password + '&grant_type=password')

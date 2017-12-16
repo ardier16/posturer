@@ -1,19 +1,22 @@
-﻿using PosturerAPI.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using System.Web.Http.Cors;
 
+using PosturerAPI.Models.Entities;
+using PosturerAPI.Models.View;
+
+
 namespace PosturerAPI.Controllers
 {
-    [Authorize]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PostureLevelController : ApiController
     {
         PosturerContext db = new PosturerContext();
 
+        [Authorize]
         // GET api/PostureLevel
         public IEnumerable<PostureLevel> Get()
         {
@@ -21,6 +24,7 @@ namespace PosturerAPI.Controllers
             return db.PostureLevels.Where(pl => pl.UserId.Equals(UserId));
         }
 
+        [Authorize]
         // GET api/PostureLevel/5
         public IHttpActionResult Get(int id)
         {
@@ -42,11 +46,16 @@ namespace PosturerAPI.Controllers
         // POST api/PostureLevel
         public IHttpActionResult Post([FromBody]PostureLevelViewModel model)
         {
+            if (db.Users.Find(model.UserId) == null)
+            {
+                return BadRequest();
+            }
+
             db.PostureLevels.Add(new PostureLevel
             {
                 Date = DateTime.Now,
                 Level = model.Level,
-                UserId = User.Identity.GetUserId(),
+                UserId = model.UserId,
             });
 
             db.SaveChanges();

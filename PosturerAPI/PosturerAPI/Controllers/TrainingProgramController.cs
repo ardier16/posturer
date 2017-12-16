@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using PosturerAPI.Models;
 using Microsoft.AspNet.Identity;
 using System.Web.Http.Cors;
+
+using PosturerAPI.Models.Entities;
+using PosturerAPI.Models.View;
+using PosturerAPI.Services;
 
 namespace PosturerAPI.Controllers
 {
@@ -20,7 +20,8 @@ namespace PosturerAPI.Controllers
         public IHttpActionResult Get()
         {
             string UserId = User.Identity.GetUserId();
-            TrainingProgram program = db.TrainingPrograms.FirstOrDefault(tp => tp.UserId.Equals(UserId));
+            TrainingProgram program = db.TrainingPrograms.FirstOrDefault(tp => 
+                tp.UserId.Equals(UserId));
 
             if (program == null)
             {
@@ -44,7 +45,7 @@ namespace PosturerAPI.Controllers
                 });
             }
 
-            return Ok(new TrainingProgramModelView
+            return Ok(new TrainingProgramViewModel
             {
                 UserId = UserId,
                 TrainingProgramId = program.TrainingProgramId,
@@ -64,7 +65,7 @@ namespace PosturerAPI.Controllers
                 db.TrainingPrograms.Remove(program);
             }
 
-            if (TrainingProgramCreator.Create(User.Identity.GetUserId(), db) != null)
+            if (TrainingProgramGenerator.Generate(User.Identity.GetUserId(), db) != null)
             {
                 return Get();
             }

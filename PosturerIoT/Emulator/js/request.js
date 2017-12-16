@@ -10,7 +10,7 @@ function blockButton() {
 
 function postRequest() {
     $.ajax({
-        url: 'http://posturer.azurewebsites.net/api/posturelevel',
+        url: 'https://posturer.azurewebsites.net/api/posturelevel',
         type: 'POST',
         data: {
             'UserId': '74b43350-8275-42ae-91b3-152ae1944328',

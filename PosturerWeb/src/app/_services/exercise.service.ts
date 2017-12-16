@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ExerciseService {
-  private exercisesUrl = 'http://posturer.azurewebsites.net/api/exercises';
+  private exercisesUrl = 'https://posturer.azurewebsites.net/api/exercises';
 
   constructor(
     private http: HttpClient) { }

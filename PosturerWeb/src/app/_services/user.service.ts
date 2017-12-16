@@ -7,7 +7,7 @@ import { User } from '../_models/User';
 export class UserService {
     constructor(private http: Http) { }
 
-    private apiUrl = 'http://posturer.azurewebsites.net/api/';
+    private apiUrl = 'https://posturer.azurewebsites.net/api/';
 
     register(user: any) {
         return this.http.post(this.apiUrl + 'account/register', {

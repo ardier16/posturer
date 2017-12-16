@@ -108,7 +108,7 @@ namespace PosturerAPI.Controllers
                 return await GetUserInfo();
             }
 
-            return BadRequest("Username {0} is already taken");
+            return BadRequest(String.Format("Username {0} is already taken", model.UserName));
         }
 
         // POST api/Account/Register

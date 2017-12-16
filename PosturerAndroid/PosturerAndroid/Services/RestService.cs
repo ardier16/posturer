@@ -15,7 +15,7 @@ namespace PosturerAndroid.Services
     public class RestService
     {
         HttpClient client;
-        const string ApiUrl = "http://posturer.azurewebsites.net/api/";
+        const string ApiUrl = "https://posturer.azurewebsites.net/api/";
 
         public RestService()
         {

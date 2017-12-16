@@ -39,13 +39,14 @@ namespace PosturerAPI.Providers
             if (user == null)
             {
                 ApplicationUser userByEmail = await userManager.FindByEmailAsync(context.UserName);
-                user = await userManager.FindAsync(userByEmail.UserName, context.Password);
 
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "Incorrect user name or password.");
                     return;
                 }
+
+                user = await userManager.FindAsync(userByEmail.UserName, context.Password);
             }
 
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,

@@ -38,7 +38,7 @@ export class ChatsComponent implements OnInit {
   formatDate(date: Date): string {
     let d = new Date(date);
     let day = d.getDate();
-    let month = d.getMonth();
+    let month = d.getMonth() + 1;
     let year = d.getFullYear();
     let hours = d.getHours();
     let minutes = d.getMinutes();

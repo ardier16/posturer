@@ -68,7 +68,7 @@ export class MainComponent implements OnInit {
   formatDate(date: Date): string {
     let d = new Date(date);
     let day = d.getDay();
-    let month = d.getMonth();
+    let month = d.getMonth() + 1;
     let year = d.getFullYear();
 
     return month + '/' + day + '/' + year;

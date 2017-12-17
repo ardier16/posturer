@@ -84,7 +84,7 @@ export class PostureLevelComponent implements OnInit {
   formatDate(date: Date): string {
     let d = new Date(date);
     let day = d.getDate();
-    let month = d.getMonth();
+    let month = d.getMonth() + 1;
     let year = d.getFullYear();
 
     return month + '/' + day + '/' + year;

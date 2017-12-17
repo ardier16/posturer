@@ -5,7 +5,7 @@
   </div>
   <div class="row">
     <div *ngFor="let exercise of trainingProgram.Exercises" class="col-md-3 col-6" href="#">
-      <a (click)="onSelect(exercise)" class="exercise btn btn-primary" href="/exercises/{{ exercise.ExerciseId }}">
+      <a class="exercise btn btn-primary" routerLink="/exercises/{{ exercise.ExerciseId }}">
         {{ exercise.Description }}
       </a>
     </div>

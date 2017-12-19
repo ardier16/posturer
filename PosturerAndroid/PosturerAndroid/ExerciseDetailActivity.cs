@@ -35,7 +35,7 @@ namespace PosturerAndroid
             cl = FindViewById<CoordinatorLayout>(Resource.Id.main_content);
             LinearLayout l = (LinearLayout)((NestedScrollView)cl.GetChildAt(1)).GetChildAt(0);
 
-            exercise = new RestService().GetExercise(Intent.GetIntExtra("exercise_id", EXERCISE_ID));
+            exercise = RestService.GetExercise(Intent.GetIntExtra("exercise_id", EXERCISE_ID));
             string exerciseName = exercise.Description;
 
             CardView cardView = (CardView)l.GetChildAt(0);

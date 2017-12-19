@@ -36,7 +36,7 @@ namespace PosturerAndroid.Fragments
 
                 try
                 {
-                    string token = new RestService().SignIn(txtEmail, txtPassword);
+                    string token = RestService.SignIn(txtEmail, txtPassword);
                     loginMessage.Text = "You've successfully signed in!";
 
                     ISharedPreferences prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);

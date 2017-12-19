@@ -38,7 +38,7 @@ namespace PosturerAndroid.Fragments
 
         private void SetUpRecyclerView(RecyclerView recyclerView)
         {
-            exercises = new RestService().GetAllExercises();
+            exercises = RestService.GetAllExercises();
 
             recyclerView.SetLayoutManager(new LinearLayoutManager(recyclerView.Context));
             recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, exercises.Select(e => e.Description).ToList(), Activity.Resources));

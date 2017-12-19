@@ -35,7 +35,7 @@ namespace PosturerAndroid.Fragments
 
             View view = inflater.Inflate(Resource.Layout.PostureLevelFragment, container, false);
             ChartView chartView = view.FindViewById<ChartView>(Resource.Id.chart);
-            List<PostureLevel> levels = new RestService().GetPostureLevels(MainActivity.GetToken());
+            List<PostureLevel> levels = RestService.GetPostureLevels(MainActivity.GetToken());
 
             var entries = levels.Select(l =>
                  new Entry(l.Level)

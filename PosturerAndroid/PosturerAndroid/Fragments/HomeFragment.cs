@@ -36,7 +36,7 @@ namespace PosturerAndroid.Fragments
             TextView statusView = view.FindViewById<TextView>(Resource.Id.user_status);
             TextView regdateView = view.FindViewById<TextView>(Resource.Id.user_reg_date);
 
-            user = new RestService().GetUserInfo(MainActivity.GetToken());
+            user = RestService.GetUserInfo(MainActivity.GetToken());
 
             emailView.Text = user.Email;
             usernameView.Text = user.UserName;

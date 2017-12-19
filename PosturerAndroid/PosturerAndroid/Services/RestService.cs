@@ -5,83 +5,62 @@ using System.Text;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-using PosturerAndroid.Models;
 using System.Net;
 using System.IO;
+
 using Newtonsoft.Json.Linq;
+
+using PosturerAndroid.Models;
 
 namespace PosturerAndroid.Services
 {
-    public class RestService
+    public static class RestService
     {
-        HttpClient client;
-        const string ApiUrl = "https://posturer.azurewebsites.net/api/";
-
-        public RestService()
+        private static HttpClient client = new HttpClient
         {
-            client = new HttpClient
-            {
-                MaxResponseContentBufferSize = 256000
-            };
+            MaxResponseContentBufferSize = 256000
+        };
+
+        private static string apiUrl = "https://posturer.azurewebsites.net/api";
+
+        public static List<Exercise> GetAllExercises()
+        {
+            return Get<List<Exercise>>(apiUrl + "/exercises");
         }
 
-        public List<Exercise> GetAllExercises()
+        public static Exercise GetExercise(int id)
         {
-            List<Exercise> exercises = new List<Exercise>();
-
-            var uri = new Uri(ApiUrl + "exercises");
-
-
-            var request = HttpWebRequest.Create(uri);
-            request.ContentType = "application/json";
-            request.Method = "GET";
-
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            {
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    var content = reader.ReadToEnd();
-                    if (!string.IsNullOrWhiteSpace(content))
-                    {
-                        exercises = JsonConvert.DeserializeObject<List<Exercise>>(content);
-                    }
-                }
-            }
-
-            return exercises;
+            return Get<Exercise>(apiUrl + "/exercises/" + id);
         }
 
-        public Exercise GetExercise(int id)
+        public static TrainingProgram GetTrainingProgram(string token)
         {
-            Exercise exercise = new Exercise();
-
-            var uri = new Uri(ApiUrl + "exercises/" + id);
-
-
-            var request = WebRequest.Create(uri);
-            request.ContentType = "application/json";
-            request.Method = "GET";
-
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            {
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    var content = reader.ReadToEnd();
-                    if (!string.IsNullOrWhiteSpace(content))
-                    {
-                        exercise = JsonConvert.DeserializeObject<Exercise>(content);
-                    }
-                }
-            }
-
-            return exercise;
+            return Get<TrainingProgram>(apiUrl + "/trainingprogram", token);
         }
 
-        public string SignIn(string username, string password)
+        public static List<PostureLevel> GetPostureLevels(string token)
         {
-            var uri = new Uri(ApiUrl + "account/login");
+            return Get<List<PostureLevel>>(apiUrl + "/posturelevel", token);
+        }
 
-            var request = (HttpWebRequest)WebRequest.Create(uri);
+        public static List<Chat> GetChats(string token)
+        {
+            return Get<List<Chat>>(apiUrl + "/chat/chats", token);
+        }
+
+        public static List<Message> GetMessages(int chatId, string token)
+        {
+            return Get<List<Message>>(apiUrl + "/chat/" + chatId, token);
+        }
+
+        public static User GetUserInfo(string token)
+        {
+            return Get<User>(apiUrl + "/account/userinfo", token);
+        }
+
+        public static string SignIn(string username, string password)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(apiUrl + "/account/login");
             var postData = "userName=" + username;
             postData += "&password=" + password;
             postData += "&grant_type=password";
@@ -109,9 +88,9 @@ namespace PosturerAndroid.Services
             }
         }
 
-        public void SignUp(string email, string password)
+        public static void SignUp(string email, string password)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(ApiUrl + "account/register");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(apiUrl + "/account/register");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
@@ -135,14 +114,11 @@ namespace PosturerAndroid.Services
             }
         }
 
-        public TrainingProgram GetTrainingProgram(string token)
+        private static T Get<T>(string url, string token = "") where T : new()
         {
-            TrainingProgram program = new TrainingProgram();
+            T result = new T();
 
-            var uri = new Uri(ApiUrl + "trainingprogram/");
-
-
-            var request = WebRequest.Create(uri);
+            var request = HttpWebRequest.Create(url);
             request.ContentType = "application/json";
             request.Method = "GET";
             request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
@@ -152,122 +128,13 @@ namespace PosturerAndroid.Services
                 using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                 {
                     var content = reader.ReadToEnd();
-                    if (!string.IsNullOrWhiteSpace(content))
-                    {
-                        program = JsonConvert.DeserializeObject<TrainingProgram>(content);
-                    }
+
+                    result = JsonConvert.DeserializeObject<T>(content);
                 }
             }
 
-            return program;
+            return result;
         }
 
-        public List<PostureLevel> GetPostureLevels(string token)
-        {
-            List<PostureLevel> levels = new List<PostureLevel>();
-
-            var uri = new Uri(ApiUrl + "posturelevel/");
-
-
-            var request = WebRequest.Create(uri);
-            request.ContentType = "application/json";
-            request.Method = "GET";
-            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
-
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            {
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    var content = reader.ReadToEnd();
-                    if (!string.IsNullOrWhiteSpace(content))
-                    {
-                        levels = JsonConvert.DeserializeObject<List<PostureLevel>>(content);
-                    }
-                }
-            }
-
-            return levels;
-        }
-
-        public List<Chat> GetChats(string token)
-        {
-            List<Chat> chats = new List<Chat>();
-
-            var uri = new Uri(ApiUrl + "chat/chats/");
-
-
-            var request = WebRequest.Create(uri);
-            request.ContentType = "application/json";
-            request.Method = "GET";
-            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
-
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            {
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    var content = reader.ReadToEnd();
-                    if (!string.IsNullOrWhiteSpace(content))
-                    {
-                        chats = JsonConvert.DeserializeObject<List<Chat>>(content);
-                    }
-                }
-            }
-
-            return chats;
-        }
-
-        public List<Message> GetMessages(int chatId, string token)
-        {
-            List<Message> messages = new List<Message>();
-
-            var uri = new Uri(ApiUrl + "chat/" + chatId);
-
-
-            var request = WebRequest.Create(uri);
-            request.ContentType = "application/json";
-            request.Method = "GET";
-            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
-
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            {
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    var content = reader.ReadToEnd();
-                    if (!string.IsNullOrWhiteSpace(content))
-                    {
-                        messages = JsonConvert.DeserializeObject<List<Message>>(content);
-                    }
-                }
-            }
-
-            return messages;
-        }
-
-        public User GetUserInfo(string token)
-        {
-            User user = new User();
-
-            var uri = new Uri(ApiUrl + "account/userinfo");
-
-
-            var request = WebRequest.Create(uri);
-            request.ContentType = "application/json";
-            request.Method = "GET";
-            request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
-
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            {
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    var content = reader.ReadToEnd();
-                    if (!string.IsNullOrWhiteSpace(content))
-                    {
-                        user = JsonConvert.DeserializeObject<User>(content);
-                    }
-                }
-            }
-
-            return user;
-        }
     }
 }

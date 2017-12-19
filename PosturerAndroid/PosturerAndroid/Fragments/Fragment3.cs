@@ -36,7 +36,7 @@ namespace PosturerAndroid.Fragments
 
                 try
                 {
-                    new RestService().SignUp(txtEmail, txtPassword);
+                    RestService.SignUp(txtEmail, txtPassword);
                     registerMessage.Text = "You've succesfully signed up!";
                 }
                 catch (WebException ex)

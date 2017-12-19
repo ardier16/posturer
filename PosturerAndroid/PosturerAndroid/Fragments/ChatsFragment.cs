@@ -38,7 +38,7 @@ namespace PosturerAndroid.Fragments
 
         private void SetUpRecyclerView(RecyclerView recyclerView)
         {
-            chats = new RestService().GetChats(MainActivity.GetToken());
+            chats = RestService.GetChats(MainActivity.GetToken());
 
             recyclerView.SetLayoutManager(new LinearLayoutManager(recyclerView.Context));
             recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, chats.Select(e => e.UserName).ToList(), Activity.Resources));

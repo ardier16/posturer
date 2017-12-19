@@ -7,6 +7,7 @@ using System.Web.Http.Cors;
 
 using PosturerAPI.Models.Entities;
 using PosturerAPI.Models.View;
+using PosturerAPI.Services.DB;
 
 namespace PosturerAPI.Controllers
 {
@@ -15,70 +16,44 @@ namespace PosturerAPI.Controllers
     [RoutePrefix("api/Chat")]
     public class ChatController : ApiController
     {
-        private PosturerContext db = new PosturerContext();
-
         // GET api/chat/chats
         [Route("Chats")]
         public IQueryable<ChatViewModel> GetChats()
         {
-            string UserId = User.Identity.GetUserId();
+            string userId = User.Identity.GetUserId();
             string userName = User.Identity.Name;
 
-            return db.UserChats.Where(m => m.UserId.Equals(UserId)).Select(m =>
-                new ChatViewModel
-                {
-                    ChatId = m.ChatId,
-                    EMail = db.Users.FirstOrDefault(u => u.Id.Equals(db.UserChats.FirstOrDefault(c => 
-                        !c.UserId.Equals(m.UserId) && c.ChatId.Equals(m.ChatId)).UserId)).Email,
-                        UserName = db.Users.FirstOrDefault(u => u.Id.Equals(db.UserChats.FirstOrDefault(c => 
-                            !c.UserId.Equals(m.UserId) && c.ChatId.Equals(m.ChatId)).UserId)).UserName
-                });
+            return ChatsService.GetUserChats(userId, userName);
         }
         
         // GET api/chat/messages
         [Route("Messages")]
         public IQueryable<MessageViewModel> GetMessages()
         {
-            string UserId = User.Identity.GetUserId();
+            string userId = User.Identity.GetUserId();
             string userName = User.Identity.Name;
 
-            return db.Messages.Where(m => m.UserId.Equals(UserId)).Select(m =>
-                new MessageViewModel
-                {
-                    MessageId = m.MessageId,
-                    SentDate = m.SentDate,
-                    Text = m.Text,
-                    UserName = userName
-                });
+            return ChatsService.GetUserMessages(userId, userName);
         }
 
         // GET api/chat/5
         public IHttpActionResult GetChat(int id)
         {
-            string UserId = User.Identity.GetUserId();
-            Chat chat = db.Chats.FirstOrDefault(c => c.ChatId == id);
+            string userId = User.Identity.GetUserId();
+            List<MessageViewModel> messages;
 
-            if (chat == null)
+            try
+            {
+                messages = ChatsService.GetUserChatMessages(userId, id);
+            }
+            catch (NullReferenceException ex)
             {
                 return BadRequest();
             }
-
-            UserChat uchat = db.UserChats.FirstOrDefault(u => 
-                u.UserId.Equals(UserId) && u.ChatId.Equals(id));
-
-            if (!uchat.UserId.Equals(UserId))
+            catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized();
             }
-
-            List<MessageViewModel> messages = db.Messages.Where(m => m.ChatId == chat.ChatId).Select(m =>
-                new MessageViewModel
-                {
-                    MessageId = m.MessageId,
-                    SentDate = m.SentDate,
-                    Text = m.Text,
-                    UserName = db.Users.FirstOrDefault(u => u.Id.Equals(m.UserId)).UserName
-                }).ToList();
 
             return Ok(messages);
         }
@@ -86,33 +61,22 @@ namespace PosturerAPI.Controllers
         // POST api/chat/5
         public IHttpActionResult Post(int id, [FromBody]MessageBindingModel model)
         {
-            string UserId = User.Identity.GetUserId();
-            Chat chat = db.Chats.FirstOrDefault(c => c.ChatId == id);
-            
-            if (chat == null)
+            string userId = User.Identity.GetUserId();
+            Message message;
+
+            try
+            {
+                message = ChatsService.AddUserMessage(userId, id, model);
+            }
+            catch (NullReferenceException ex)
             {
                 return BadRequest();
             }
-
-            UserChat uchat = db.UserChats.FirstOrDefault(u => 
-                u.UserId.Equals(UserId) && u.ChatId.Equals(id));
-
-            if (!uchat.UserId.Equals(UserId))
+            catch (UnauthorizedAccessException ex)
             {
                 return Unauthorized();
             }
 
-            var message = new Message
-            {
-                ChatId = id,
-                SentDate = DateTime.Now,
-                Text = model.Text,
-                UserId = User.Identity.GetUserId()
-            };
-
-            db.Messages.Add(message);
-
-            db.SaveChanges();
             return Ok(message);
         }
     }

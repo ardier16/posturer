@@ -7,7 +7,7 @@ using System.Web.Http.Cors;
 
 using PosturerAPI.Models.Entities;
 using PosturerAPI.Models.View;
-using PosturerAPI.Services.Db;
+using PosturerAPI.Services.DB;
 
 namespace PosturerAPI.Controllers
 {

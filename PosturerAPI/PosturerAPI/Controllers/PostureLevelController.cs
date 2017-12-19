@@ -7,58 +7,55 @@ using System.Web.Http.Cors;
 
 using PosturerAPI.Models.Entities;
 using PosturerAPI.Models.View;
-
+using PosturerAPI.Services.DB;
 
 namespace PosturerAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PostureLevelController : ApiController
     {
-        PosturerContext db = new PosturerContext();
-
         [Authorize]
         // GET api/PostureLevel
         public IEnumerable<PostureLevel> Get()
         {
-            string UserId = User.Identity.GetUserId();
-            return db.PostureLevels.Where(pl => pl.UserId.Equals(UserId));
+            string userId = User.Identity.GetUserId();
+            return PostureLevelsService.GetUserPostureLevels(userId);
         }
 
         [Authorize]
         // GET api/PostureLevel/5
         public IHttpActionResult Get(int id)
         {
-            PostureLevel pl = db.PostureLevels.Find(id);
+            PostureLevel postureLevel;
 
-            if (pl == null)
+            try
+            {
+                postureLevel = PostureLevelsService.GetPostureLevelById(id);
+            }
+            catch (NullReferenceException ex)
             {
                 return BadRequest();
             }
 
-            if (!pl.UserId.Equals(User.Identity.GetUserId()))
+            if (!postureLevel.UserId.Equals(User.Identity.GetUserId()))
             {
                 return Unauthorized();
             }
 
-            return Ok(pl);
+            return Ok(postureLevel);
         }
 
         // POST api/PostureLevel
         public IHttpActionResult Post([FromBody]PostureLevelViewModel model)
         {
-            if (db.Users.Find(model.UserId) == null)
+            try
+            {
+                PostureLevelsService.AddUserPostureLevel(model, User.Identity.GetUserId());
+            }
+            catch (NullReferenceException ex)
             {
                 return BadRequest();
             }
-
-            db.PostureLevels.Add(new PostureLevel
-            {
-                Date = DateTime.Now,
-                Level = model.Level,
-                UserId = model.UserId,
-            });
-
-            db.SaveChanges();
 
             return Ok();
         }

@@ -6,12 +6,10 @@ using System.Web;
 using PosturerAPI.Models.Entities;
 using PosturerAPI.Models.View;
 
-namespace PosturerAPI.Services.Db
+namespace PosturerAPI.Services.DB
 {
-    public class ExercisesService
+    public class ExercisesService : DBService
     {
-        private static PosturerContext context = new PosturerContext();
-
         public static IQueryable GetAllExercises()
         {
             return context.Exercises.Include("Steps").Select(e => new

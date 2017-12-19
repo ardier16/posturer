@@ -215,10 +215,11 @@
       <DependentUpon>PosturerMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Services\Db\ChatsService.cs" />
-    <Compile Include="Services\Db\ExercisesService.cs" />
-    <Compile Include="Services\Db\PostureLevelsService.cs" />
-    <Compile Include="Services\Db\TrainingProgramsService.cs" />
+    <Compile Include="Services\DB\ChatsService.cs" />
+    <Compile Include="Services\DB\DBService.cs" />
+    <Compile Include="Services\DB\ExercisesService.cs" />
+    <Compile Include="Services\DB\PostureLevelsService.cs" />
+    <Compile Include="Services\DB\TrainingProgramsService.cs" />
     <Compile Include="Services\TrainingProgramGenerator.cs" />
     <Compile Include="Models\View\AccountBindingModels.cs" />
     <Compile Include="Models\View\TrainingProgramViewModels.cs" />

@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { UserService } from '../_services/index';
+import { UserService } from '../../_services/index';
 import { Location } from '@angular/common';
-import { AuthenticationService } from '../_services/index';
+import { AuthenticationService } from '../../_services/index';
 
 
 @Component({

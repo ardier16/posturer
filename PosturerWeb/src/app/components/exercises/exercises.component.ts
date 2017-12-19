@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Exercise } from '../_models/exercise';
-import { ExerciseService } from '../_services/exercise.service';
+import { Exercise } from '../../_models/exercise';
+import { ExerciseService } from '../../_services/exercise.service';
 
 @Component({
   selector: 'app-exercises',
@@ -20,5 +20,4 @@ export class ExercisesComponent implements OnInit {
     this.exerciseService.getExercises()
       .subscribe(exercises => this.exercises = exercises);
   }
-
 }

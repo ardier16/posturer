@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AlertService, AuthenticationService } from '../_services/index';
+import { AlertService, AuthenticationService } from '../../_services/index';
 
 @Component({
     selector: 'app-login',
@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
         private zone: NgZone) { }
 
     ngOnInit() {
-        // reset login status
         this.authenticationService.logout();
     }
 

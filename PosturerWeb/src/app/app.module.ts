@@ -7,19 +7,19 @@ import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
-import { ExercisesComponent } from './exercises/exercises.component';
-import { ExerciseDetailComponent } from './exercise-detail/exercise-detail.component';
+import { ExercisesComponent } from './components/exercises/exercises.component';
+import { ExerciseDetailComponent } from './components/exercise-detail/exercise-detail.component';
 import { ExerciseService } from './_services/exercise.service';
 import { AppRoutingModule } from './/app-routing.module';
-import { MainComponent } from './main/main.component';
-import { ChatsComponent } from './chats/chats.component';
-import { PostureLevelComponent } from './posture-level/posture-level.component';
-import { TrainingProgramComponent } from './training-program/training-program.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { MainComponent } from './components/main/main.component';
+import { ChatsComponent } from './components/chats/chats.component';
+import { PostureLevelComponent } from './components/posture-level/posture-level.component';
+import { TrainingProgramComponent } from './components/training-program/training-program.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { AlertService, AuthenticationService, UserService } from './_services/index';
-import { AlertComponent } from './alert/alert.component';
+import { AlertComponent } from './components/alert/alert.component';
 import { AuthGuard } from './_guards/index';
 
 

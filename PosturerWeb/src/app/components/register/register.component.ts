@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AlertService, UserService } from '../_services/index';
+import { AlertService, UserService } from '../../_services/index';
 
 @Component({
     selector: 'app-register',
@@ -32,7 +32,7 @@ export class RegisterComponent {
             data => {
                 registerBtn.classList.remove('disabled');
                 registerBtn.innerHTML = 'Sign Up';
-                this.alertService.success('Registration successful', true);
+                this.alertService.success('You\'ve successfully signed up!', true);
                 this.router.navigate(['/login']);
             },
             error => {

@@ -1,10 +1,18 @@
 <div class="container">
   <h2 class="text-center">Exercises</h2>
-  <div class="row">
+  <div *ngIf="exercises" class="row">
     <div *ngFor="let exercise of exercises" class="col-md-3 col-6" routerLink="#">
       <a class="exercise btn btn-primary" routerLink="/exercises/{{ exercise.ExerciseId }}">
         {{ exercise.Description }}
       </a>
     </div>
+  </div>
+  <div *ngIf="!exercises">
+    <div class="spinner-wrap">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
   </div>
 </div>

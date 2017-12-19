@@ -7,7 +7,6 @@ export class Exercise {
 }
 
 export class ExerciseStep {
-  ExerciseStepId: number;
   StepNumber: number;
   Text: string;
   ImageUrl: string;

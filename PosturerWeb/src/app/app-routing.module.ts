@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ExercisesComponent } from './exercises/exercises.component';
-import { ExerciseDetailComponent } from './exercise-detail/exercise-detail.component';
-import { MainComponent } from './main/main.component';
-import { ChatsComponent } from './chats/chats.component';
-import { PostureLevelComponent } from './posture-level/posture-level.component';
-import { TrainingProgramComponent } from './training-program/training-program.component';
+import { ExercisesComponent } from './components/exercises/exercises.component';
+import { ExerciseDetailComponent } from './components/exercise-detail/exercise-detail.component';
+import { MainComponent } from './components/main/main.component';
+import { ChatsComponent } from './components/chats/chats.component';
+import { PostureLevelComponent } from './components/posture-level/posture-level.component';
+import { TrainingProgramComponent } from './components/training-program/training-program.component';
 
 
 const routes: Routes = [

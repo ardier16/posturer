@@ -17,33 +17,33 @@ export class UserService {
     }
 
     getPostureLevel() {
-        return this.http.get(this.apiUrl + 'posturelevel', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.apiUrl + 'posturelevel', this.getToken()).map((response: Response) => response.json());
     }
 
     getTrainingProgram() {
-        return this.http.get(this.apiUrl + 'trainingprogram', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.apiUrl + 'trainingprogram', this.getToken()).map((response: Response) => response.json());
     }
 
     getChats() {
-        return this.http.get(this.apiUrl + 'chat/chats', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.apiUrl + 'chat/chats', this.getToken()).map((response: Response) => response.json());
     }
 
     getMessages(id: number) {
-        return this.http.get(this.apiUrl + 'chat/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.apiUrl + 'chat/' + id, this.getToken()).map((response: Response) => response.json());
     }
 
     getUserInfo() {
-        return this.http.get(this.apiUrl + 'account/userinfo', this.jwt()).map((response: Response) => response.json());
+        return this.http.get(this.apiUrl + 'account/userinfo', this.getToken()).map((response: Response) => response.json());
     }
 
     sendMessage(chatId: number, text: string) {
         return this.http.post(this.apiUrl + 'chat/' + chatId, {
             "Text": text
-        }, this.jwt()).map((response: Response) => response.json());
+        }, this.getToken()).map((response: Response) => response.json());
     }
 
     getNewTrainingProgram() {
-        return this.http.post(this.apiUrl + 'trainingprogram', {}, this.jwt()).map((response: Response) => response.json());
+        return this.http.post(this.apiUrl + 'trainingprogram', {}, this.getToken()).map((response: Response) => response.json());
     }
 
     changePassword(oldPass: string, newPass: string, confirmPass: string) {
@@ -51,19 +51,19 @@ export class UserService {
             "OldPassword": oldPass,
             "NewPassword": newPass,
             "ConfirmPassword": confirmPass
-        }, this.jwt()).map((response: Response) => response.json());
+        }, this.getToken()).map((response: Response) => response.json());
     }
 
     changeUsername(userName: string) {
         return this.http.post(this.apiUrl + 'account/changeusername', {
             "UserName": userName,
-        }, this.jwt()).map((response: Response) => response.json());
+        }, this.getToken()).map((response: Response) => response.json());
     }
 
     // private helper methods
 
-    private jwt() {
-        // create authorization header with jwt token
+    private getToken() {
+        // create authorization header with Bearer token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.access_token) {
             let headers = new Headers({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services';
-import { AuthGuard } from '../_guards/index';
-import { TrainingProgram } from '../_models/training-program';
+import { UserService } from '../../_services';
+import { AuthGuard } from '../../_guards/index';
+import { TrainingProgram } from '../../_models/training-program';
 
 @Component({
   selector: 'app-training-program',
@@ -10,7 +10,6 @@ import { TrainingProgram } from '../_models/training-program';
 })
 export class TrainingProgramComponent implements OnInit {
   trainingProgram: TrainingProgram = {
-    TrainingProgramId: 0,
     UserId: '',
     Exercises: null
   };

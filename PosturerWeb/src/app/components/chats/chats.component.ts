@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Chat } from '../_models/chat';
-import { UserService } from '../_services/index';
-import { AuthGuard } from '../_guards/index';
-import { Message } from '../_models/message';
-import { User } from '../_models/User';
+import { Chat } from '../../_models/chat';
+import { UserService } from '../../_services/index';
+import { AuthGuard } from '../../_guards/index';
+import { Message } from '../../_models/message';
+import { User } from '../../_models/User';
 
 @Component({
   selector: 'app-chats',
@@ -49,6 +49,7 @@ export class ChatsComponent implements OnInit {
 
   showMessages(chatId: number) {
     this.currentChat = this.findChat(chatId);
+    this.messages = null;
 
     this.userService.getMessages(chatId)
       .subscribe(
@@ -76,7 +77,6 @@ export class ChatsComponent implements OnInit {
       textArea.value = '';
 
       let message: Message = {
-        MessageId: 0,
         Text: text,
         UserName: this.currentUser.UserName,
         SentDate: new Date()

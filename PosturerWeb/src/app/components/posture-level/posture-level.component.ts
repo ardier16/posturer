@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services';
-import { PostureLevel } from '../_models/posture-level';
+import { UserService } from '../../_services';
+import { PostureLevel } from '../../_models/posture-level';
 import { Chart } from 'chart.js';
-import { AuthGuard } from '../_guards/index';
+import { AuthGuard } from '../../_guards/index';
 
 
 @Component({

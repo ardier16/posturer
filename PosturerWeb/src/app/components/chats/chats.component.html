@@ -4,6 +4,15 @@
       <div class="col-sm-4 col-lg-3 chat_sidebar">
         <div class="row">
           <div class="member_list">
+            <div *ngIf="!chats">
+              <div class="spinner-wrap">
+                <div class="spinner">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+              </div>
+            </div>
             <ul class="list-unstyled">
               <li *ngFor="let chat of chats" class="left clearfix" [ngClass]="currentChat && currentChat.ChatId === chat.ChatId ? 'selected-chat' : ''"
                 (click)="showMessages(chat.ChatId)">
@@ -35,6 +44,15 @@
             <div *ngIf="currentChat" class="pull-right recipient-mail">{{currentChat.EMail}}</div>
           </div>
           <div class="chat_area">
+            <div *ngIf="currentChat && !messages">
+              <div class="spinner-wrap">
+                <div class="spinner">
+                  <div class="bounce1"></div>
+                  <div class="bounce2"></div>
+                  <div class="bounce3"></div>
+                </div>
+              </div>
+            </div>
             <ul class="list-unstyled">
               <li *ngFor="let message of messages" class="left clearfix" [ngClass]="message.UserName == currentUser.UserName ? 'owner_message' : 'guest_message'">
                 <span class="chat-img1" [ngClass]="message.UserName == currentUser.UserName ? 'pull-right' : 'pull-left'">

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Exercise } from '../_models/exercise';
+import { Exercise } from '../../_models/exercise';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { ExerciseService } from '../_services/exercise.service';
+import { ExerciseService } from '../../_services/exercise.service';
 
 @Component({
   selector: 'app-exercise-detail',
@@ -15,7 +15,7 @@ export class ExerciseDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private exerciseService: ExerciseService,
+    private exerciseService: ExerciseService
   ) { }
 
   ngOnInit(): void {

@@ -4,31 +4,31 @@
   <group android:checkableBehavior="single">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_dashboard"
+        android:icon="@drawable/home"
         android:title="Home" />
     <item
         android:id="@+id/nav_exercises"
-        android:icon="@drawable/ic_event"
+        android:icon="@drawable/exercise"
         android:title="Exercises" />
     <item
         android:id="@+id/nav_chats"
-        android:icon="@drawable/ic_headset"
+        android:icon="@drawable/chat"
         android:title="Chats" />
     <item
         android:id="@+id/nav_posturelevel"
-        android:icon="@drawable/ic_forum"
+        android:icon="@drawable/chart"
         android:title="Posture Level" />
     <item
       android:id="@+id/nav_program"
-      android:icon="@drawable/ic_forum"
+      android:icon="@drawable/training"
       android:title="Training Program" />
     <item
         android:id="@+id/nav_signin"
-        android:icon="@drawable/ic_dashboard"
+        android:icon="@drawable/login"
         android:title="Sign In" />
     <item
         android:id="@+id/nav_signup"
-        android:icon="@drawable/ic_forum"
+        android:icon="@drawable/register"
         android:title="Sign Up" />
   </group>
 </menu>

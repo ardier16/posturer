@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 
@@ -43,14 +40,19 @@ namespace PosturerAndroid.Services
             return Get<List<PostureLevel>>(apiUrl + "/posturelevel", token);
         }
 
+        public static PostureLevel GetCurrentPostureLevel(string token)
+        {
+            return Get<PostureLevel>(apiUrl + "/posturelevel/current", token);
+        }
+
         public static List<Chat> GetChats(string token)
         {
             return Get<List<Chat>>(apiUrl + "/chat/chats", token);
         }
 
-        public static List<Message> GetMessages(int chatId, string token)
+        public static List<ChatMessage> GetMessages(int chatId, string token)
         {
-            return Get<List<Message>>(apiUrl + "/chat/" + chatId, token);
+            return Get<List<ChatMessage>>(apiUrl + "/chat/" + chatId, token);
         }
 
         public static User GetUserInfo(string token)
@@ -135,6 +137,5 @@ namespace PosturerAndroid.Services
 
             return result;
         }
-
     }
 }

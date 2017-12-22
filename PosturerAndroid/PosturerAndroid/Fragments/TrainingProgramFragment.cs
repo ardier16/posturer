@@ -1,9 +1,7 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using SupportFragment = Android.Support.V4.App.Fragment;
 using System.Collections.Generic;
 using PosturerAndroid.Helpers;
 using Android.Graphics;
@@ -14,34 +12,37 @@ using Android.Widget;
 using PosturerAndroid.Services;
 using System.Linq;
 using PosturerAndroid.Models;
+using System.Threading.Tasks;
 
 namespace PosturerAndroid.Fragments
 {
     public class TrainingProgramFragment : Fragment
     {
-        private TrainingProgram program;
+        private TrainingProgram program = new TrainingProgram();
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             RecyclerView recyclerView = inflater.Inflate(Resource.Layout.TrainingProgramFragment, container, false) as RecyclerView;
-
             SetUpRecyclerView(recyclerView);
-
             return recyclerView;
         }
 
         private void SetUpRecyclerView(RecyclerView recyclerView)
         {
-            program = RestService.GetTrainingProgram(MainActivity.GetToken());
+
+            Task.Factory.StartNew(() => {
+                program = RestService.GetTrainingProgram(MainActivity.GetToken());
+            }).ContinueWith(task => {
+                recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, 
+                    program.Exercises.Select(e => e.Description).ToList(), Activity.Resources));
+            }, TaskScheduler.FromCurrentSynchronizationContext());
 
             recyclerView.SetLayoutManager(new LinearLayoutManager(recyclerView.Context));
-            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, program.Exercises.Select(e => e.Description).ToList(), Activity.Resources));
+            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, new List<string>(), Activity.Resources));
 
             recyclerView.SetItemClickListener((rv, position, view) =>
             {

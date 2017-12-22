@@ -2,7 +2,7 @@
 
 namespace PosturerAndroid.Models
 {
-    public class Message
+    public class ChatMessage
     {
         public string Text { get; set; }
         public DateTime SentDate { get; set; }

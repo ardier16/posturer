@@ -25,7 +25,7 @@ namespace PosturerAPI.Controllers
 
             return ChatsService.GetUserChats(userId, userName);
         }
-        
+
         // GET api/chat/messages
         [Route("Messages")]
         public IQueryable<MessageViewModel> GetMessages()

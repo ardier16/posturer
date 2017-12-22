@@ -1,9 +1,7 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
-using SupportFragment = Android.Support.V4.App.Fragment;
 using System.Collections.Generic;
 using PosturerAndroid.Helpers;
 using Android.Graphics;
@@ -14,22 +12,22 @@ using Android.Widget;
 using PosturerAndroid.Services;
 using System.Linq;
 using PosturerAndroid.Models;
+using System.Threading.Tasks;
 
 namespace PosturerAndroid.Fragments
 {
     public class ChatsFragment : Fragment
     {
-        private List<Chat> chats;
+        private List<Chat> chats = new List<Chat>();
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            RecyclerView recyclerView = inflater.Inflate(Resource.Layout.Fragment1, container, false) as RecyclerView;
+            RecyclerView recyclerView = inflater.Inflate(Resource.Layout.ExercisesFragment, 
+                container, false) as RecyclerView;
 
             SetUpRecyclerView(recyclerView);
 
@@ -38,10 +36,16 @@ namespace PosturerAndroid.Fragments
 
         private void SetUpRecyclerView(RecyclerView recyclerView)
         {
-            chats = RestService.GetChats(MainActivity.GetToken());
+            Task.Factory.StartNew(() => {
+                chats = RestService.GetChats(MainActivity.GetToken());
+            }).ContinueWith(task => {
+                recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context,
+                chats.Select(e => e.UserName).ToList(), Activity.Resources));
+            }, TaskScheduler.FromCurrentSynchronizationContext());
 
             recyclerView.SetLayoutManager(new LinearLayoutManager(recyclerView.Context));
-            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context, chats.Select(e => e.UserName).ToList(), Activity.Resources));
+            recyclerView.SetAdapter(new SimpleStringRecyclerViewAdapter(recyclerView.Context,
+                chats.Select(e => e.UserName).ToList(), Activity.Resources));
 
             recyclerView.SetItemClickListener((rv, position, view) =>
             {

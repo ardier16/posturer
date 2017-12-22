@@ -42,5 +42,25 @@ namespace PosturerAPI.Services.DB
 
             context.SaveChanges();
         }
+
+        public static PostureLevelViewModel GetUserCurrentLevel(string userId)
+        {
+            List<PostureLevel> userLevels = context.PostureLevels.Where(pl => 
+                pl.UserId.Equals(userId)).ToList();
+            float currentLevel = 0;
+            int levelsCount = 0;
+
+            for (int i = 0; i < userLevels.Count && i < 5; i++)
+            {
+                currentLevel += userLevels[userLevels.Count - i - 1].Level;
+                levelsCount++;
+            }
+
+            return new PostureLevelViewModel
+            {
+                UserId = userId,
+                Level = currentLevel / levelsCount
+            };
+        }
     }
 }

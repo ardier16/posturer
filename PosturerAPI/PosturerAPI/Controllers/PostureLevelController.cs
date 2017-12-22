@@ -12,6 +12,7 @@ using PosturerAPI.Services.DB;
 namespace PosturerAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/PostureLevel")]
     public class PostureLevelController : ApiController
     {
         [Authorize]
@@ -22,27 +23,32 @@ namespace PosturerAPI.Controllers
             return PostureLevelsService.GetUserPostureLevels(userId);
         }
 
-        [Authorize]
         // GET api/PostureLevel/5
         public IHttpActionResult Get(int id)
         {
-            PostureLevel postureLevel;
-
             try
             {
-                postureLevel = PostureLevelsService.GetPostureLevelById(id);
+                PostureLevelsService.AddUserPostureLevel(new PostureLevelViewModel
+                {
+                    UserId = "74b43350-8275-42ae-91b3-152ae1944328",
+                    Level = id
+                }, "74b43350-8275-42ae-91b3-152ae1944328");
             }
             catch (NullReferenceException ex)
             {
                 return BadRequest();
             }
 
-            if (!postureLevel.UserId.Equals(User.Identity.GetUserId()))
-            {
-                return Unauthorized();
-            }
+            return Ok();
+        }
 
-            return Ok(postureLevel);
+        [Authorize]
+        [Route("Current")]
+        // GET api/PostureLevel/Current
+        public PostureLevelViewModel GetCurrentLevel()
+        {
+            string userId = User.Identity.GetUserId();
+            return PostureLevelsService.GetUserCurrentLevel(userId);
         }
 
         // POST api/PostureLevel

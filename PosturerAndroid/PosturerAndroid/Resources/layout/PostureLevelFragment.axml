@@ -7,6 +7,25 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
     <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:text="Current Posture Level:"
+    android:textSize="32sp"
+    android:textColor="#333333"
+    android:layout_gravity="top"
+    android:textStyle="bold"
+  android:padding="8dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/current_level"
+        android:textSize="32sp"
+        android:textColor="#333333"
+        android:textStyle="bold"
+      android:padding="8dp"/>
+    <TextView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:textSize="25sp"

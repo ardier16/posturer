@@ -5,9 +5,7 @@ using Android.Support.V7.App;
 using Android.Support.Design.Widget;
 using Android.Widget;
 using Android.Views;
-using Widget = Android.Support.V7.Widget;
 
-using PosturerAndroid.Helpers;
 using PosturerAndroid.Models;
 using PosturerAndroid.Services;
 using Android.Support.V4.Widget;

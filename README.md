@@ -1,10 +1,10 @@
 # Posturer
 Posture diagnostics, analysis and improvement
 
-API: https://posturer.azurewebsites.net/api/exercises
+API: ASP.NET Web API 2
 
-Web: https://posturer.neocities.org/
+Web: Angular 5
 
-Arduino IoT: https://www.tinkercad.com/things/l6gHcTO0dK2-posturer/editel
+IoT: Arduino
 
-IoT Emulator: https://posturer.neocities.org/emulator
+IoT Emulator: JQuery

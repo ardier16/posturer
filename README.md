@@ -1,10 +1,22 @@
 # Posturer
-Posture diagnostics, analysis and improvement
+Posture diagnostics, analysis and improvement.
 
-API: ASP.NET Web API 2
+## Stack
 
-Web: Angular 5
+* **API:** `ASP.NET Web API 2`
 
-IoT: Arduino
+* **Web:** `Angular 5`
 
-IoT Emulator: JQuery
+* **Android:** `Xamarin Android` 
+
+* **IoT:** `Arduino`
+
+* **IoT Emulator:** `JQuery`
+
+## Demo
+
+#### `API`
+https://posturer.azurewebsites.net/api/exercises
+
+#### `Web`
+https://posturer.neocities.org/

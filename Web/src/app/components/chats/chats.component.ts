@@ -3,7 +3,7 @@ import { Chat } from '../../_models/chat';
 import { UserService } from '../../_services/index';
 import { AuthGuard } from '../../_guards/index';
 import { Message } from '../../_models/message';
-import { User } from '../../_models/User';
+import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-chats',

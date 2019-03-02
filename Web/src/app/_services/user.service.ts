@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { User } from '../_models/User';
-
 @Injectable()
 export class UserService {
     constructor(private http: Http) { }
@@ -25,11 +23,11 @@ export class UserService {
     }
 
     getChats() {
-        return this.http.get(this.apiUrl + 'chat/chats', this.getToken()).map((response: Response) => response.json());
+        return this.http.get(this.apiUrl + 'chats', this.getToken()).map((response: Response) => response.json());
     }
 
     getMessages(id: number) {
-        return this.http.get(this.apiUrl + 'chat/' + id, this.getToken()).map((response: Response) => response.json());
+        return this.http.get(this.apiUrl + 'chats/' + id, this.getToken()).map((response: Response) => response.json());
     }
 
     getUserInfo() {
